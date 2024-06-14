@@ -1,0 +1,101 @@
+---
+import headshot from "@assets/headshot.png";
+import { Image } from "astro:assets";
+import { LOGOS as _LOGOS } from "@components/homepage/Logos";
+
+const { HTMLLogo, CSSLogo, TSLogo, ReactLogo, TWLogo, NodeLogo, PythonLogo } =
+  _LOGOS;
+
+// Control these
+const TOTAL_WIDTH = 350;
+const HEADSHOT_WIDTH = 260;
+const TRACK_RADIUS = 240;
+const START_ANGLE = 3.4; // rad
+const END_ANGLE = 1.2; // rad
+// These are computed
+const LOGO_TRACK_X = TOTAL_WIDTH - TRACK_RADIUS * Math.cos(END_ANGLE);
+const LOGO_TRACK_Y = TOTAL_WIDTH + TRACK_RADIUS * Math.sin(START_ANGLE);
+
+const LOGOS = [
+  HTMLLogo,
+  CSSLogo,
+  TSLogo,
+  ReactLogo,
+  TWLogo,
+  NodeLogo,
+  PythonLogo,
+];
+
+function getCoords(i: number, N: number = LOGOS.length) {
+  const t = i / (N - 1);
+  const angle = (1 - t) * START_ANGLE + t * END_ANGLE;
+
+  const left = LOGO_TRACK_X + TRACK_RADIUS * Math.cos(angle);
+  const top = LOGO_TRACK_Y - TRACK_RADIUS * Math.sin(angle);
+
+  return { left, top };
+}
+---
+
+<section
+  class="bg-gradient-to-br from-accent to-accent-light rounded-xl overflow-hidden text-white flex flex-col sm:flex-row justify-end items-end"
+>
+  <div class="p-6 flex flex-1 flex-col gap-y-6">
+    <div class="flex flex-col gap-y-1">
+      <div class="text-2xl font-medium text-background">I'm Grant.</div>
+      <h1 class="text-5xl font-bold">I like to build.</h1>
+    </div>
+    <p class="text-sm">
+      TypeScript connoisseur. Animation aficionado. Frontend web, mostly React
+      and Next.js. Cross-platform mobile with React Native. Backend with Node.js
+      and Python. Have written an SQL query or two. Can wrangle the cloud when
+      needed.
+    </p>
+  </div>
+  <div class="flex-shrink-0">
+    <div
+      class="relative flex justify-end items-end text-background"
+      style={{ width: `${TOTAL_WIDTH}px`, height: `${TOTAL_WIDTH}px` }}
+    >
+      <div class="absolute inset-0">
+        {
+          LOGOS.map((Logo, index) => {
+            const { left, top } = getCoords(index, LOGOS.length);
+
+            let maskImage: string | undefined = undefined;
+
+            if (index === 0) {
+              const { left: nextLeft, top: nextTop } = getCoords(1);
+              const angle =
+                Math.PI / 2 + Math.atan2(top - nextTop, nextLeft - left);
+              maskImage = `linear-gradient(${angle}rad, rgba(0,0,0,1), rgba(0,0,0,0) 50%)`;
+            } else if (index === LOGOS.length - 1) {
+              const { left: prevLeft, top: prevTop } = getCoords(index - 1);
+              const angle =
+                Math.PI / 2 + Math.atan2(prevTop - top, left - prevLeft);
+              maskImage = `linear-gradient(${angle}rad, rgba(0,0,0,1), rgba(0,0,0,0) 50%)`;
+            }
+
+            return (
+              <Logo
+                style={{
+                  left,
+                  top,
+                  maskImage,
+                }}
+              />
+            );
+          })
+        }
+      </div>
+
+      <Image
+        src={headshot}
+        alt="Grant's ugly face"
+        width={2 * HEADSHOT_WIDTH}
+        quality="high"
+        style={{ width: `${HEADSHOT_WIDTH}px` }}
+      />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,105 @@
+---
+import SectionContainer from "@components/SectionContainer.astro";
+
+import RampIcon from "@assets/ramp-icon.png";
+import FormidableIcon from "@assets/Formidable-Icon.png";
+import Coinbase from "@assets/coinbase-icon.png";
+import Synapse from "@assets/synapse.png";
+import Henri from "@assets/henri.png";
+import Artisan from "@assets/Artisan.png";
+import ASU from "@assets/asu.png";
+import { ExpandableBackground } from "@components/homepage/ExpandableBackground";
+import {
+  getOptimizedImageSrc,
+  type OptimizedImageDetails,
+} from "src/utils/getOptimizedImageSrc";
+
+const EXPERIENCES: IExperience[] = await Promise.all(
+  (
+    [
+      {
+        title: "Sr. Software Engineer",
+        company: "Ramp",
+        description: `Full-stack web development using React and Python. Leading initiatives to streamline cardholder and admin workflows.`,
+        time: "Oct. 2023 &ndash; Present",
+        logo: RampIcon,
+      },
+      {
+        title: "VP of Engineering",
+        company: "Formidable",
+        description: `Helping client engineering teams shine their brightest. Overseeing the development of open source software and community outreach.`,
+        time: "June 2022 &ndash; Oct 2023",
+        logo: FormidableIcon,
+      },
+      {
+        title: "Sr. Software Engineer",
+        company: "Coinbase",
+        description: `Full stack web and mobile on the Platform team. Built client SDKs and developer tools to help third parties integrate with Coinbase's fiat payment rails.`,
+        time: `Nov. 2021 &ndash; June 2022`,
+        logo: Coinbase,
+      },
+      {
+        title: "Sr. Software Engineer",
+        company: "Formidable Labs",
+        description: `Software consultant, building software and helping others build software better. Focus on front-end web and native mobile using primarily JS tooling.`,
+        time: `Mar. 2021 &ndash; Nov. 2021`,
+        logo: FormidableIcon,
+      },
+      {
+        title: "Sr. Software Engineer",
+        company: "Synapse Studios",
+        description: `Team lead on health/insurance tech client. Full-stack web and mobile. TypeScript, React, React Native, and Node.js.`,
+        time: `Jan. 2020 &ndash; Mar. 2021`,
+        logo: Synapse,
+      },
+      {
+        title: "Sr. Software Engineer",
+        company: "Henri Home",
+        description: `Full-stack web and mobile development. React Native, Vue.JS, and Ruby on Rails.`,
+        time: `Sept. 2019 &ndash; Jan. 2020`,
+        logo: Henri,
+      },
+      {
+        title: `Software Engineer`,
+        company: "Artisan Colour",
+        description: `Full-stack web development of eCommerce sites and internal tools. Vue.js, NodeJS, and MongoDB.`,
+        time: `Aug. 2018 &ndash; Sept. 2019`,
+        logo: Artisan,
+      },
+      {
+        title: `Software Engineer`,
+        company: "COSma Learning",
+        description: `Development and R&D of custom online math courseware. JavaScript, PHP, and MySQL.`,
+        time: `Jan. 2015 &ndash; Aug. 2018`,
+      },
+      {
+        title: `Math Instructor`,
+        company: "Arizona State Univ.",
+        description: `Taught calculus and precalculus. Lead professional development workshops. R&D of online courseware.`,
+        time: `May 2014 &ndash; Aug. 2018`,
+        logo: ASU,
+      },
+    ] as (IExperience & { logo?: ImageMetadata })[]
+  ).map(async (exp) => ({
+    ...exp,
+    logo: exp.logo
+      ? await getOptimizedImageSrc({ src: exp.logo, width: 100 })
+      : undefined,
+  }))
+);
+
+type IExperience = {
+  title: string;
+  company: string;
+  description: string;
+  time: string;
+  logo?: OptimizedImageDetails;
+};
+---
+
+<SectionContainer
+  title="Background & experience"
+  subtitle="My work history. From teaching calculus, to slinging code, to leading teams."
+>
+  <ExpandableBackground items={EXPERIENCES} client:visible />
+</SectionContainer>

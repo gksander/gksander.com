@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import {} from "astro:assets";
+import Hero from "../components/homepage/Hero.astro";
+import Background from "@components/homepage/Background.astro";
+---
+
+<Layout title="Welcome to Astro.">
+  <main class="container max-w-content p-6 pt-12 flex flex-col gap-y-32">
+    <Hero />
+    <Background />
+  </main>
+</Layout>
