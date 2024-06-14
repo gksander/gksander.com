@@ -52,22 +52,21 @@ function ExperienceItemCard({
     <div className="flex gap-x-4 items-end">
       <div
         className={clsx(
-          "flex flex-col gap-y-2 flex-1",
+          "flex flex-col gap-y-3 flex-1",
           isPrimary ? "bg-opacity-90" : "bg-opacity-25",
         )}
       >
-        <div className="flex-1 flex flex-col gap-y-0.5">
-          <div className="font-semibold">{item.title}</div>
-          <div className="text-subtle-copy text-sm">{item.description}</div>
+        <div>
+          <div className="text-lg font-bold leading-snug">{item.company}</div>
+          <div className="text-black-light text-sm flex gap-x-2 items-center">
+            {item.title} <span>&middot;</span>
+            <span
+              className="text-xs"
+              dangerouslySetInnerHTML={{ __html: item.time }}
+            />
+          </div>
         </div>
-
-        <div className="text-black-light">
-          <div className="font-bold text-sm">{item.company}</div>
-          <div
-            dangerouslySetInnerHTML={{ __html: item.time }}
-            className="text-xs"
-          />
-        </div>
+        <div className="text-subtle-copy text-sm">{item.description}</div>
       </div>
 
       {item.logo && (
