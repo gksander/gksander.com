@@ -25,7 +25,7 @@ export function OptimizedImage({
 
   return (
     <picture>
-      {avifSrc && <source type="image/avif" srcset={avifSrc} />}
+      {avifSrc && <source type="image/avif" srcSet={avifSrc} />}
       {webpSrc && <source type="image/webp" srcSet={webpSrc} />}
       <img
         src={defaultSrc}

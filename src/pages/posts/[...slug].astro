@@ -1,0 +1,29 @@
+---
+// import "@fontsource-variable/jetbrains-mono";
+import { getCollection, type CollectionEntry } from "astro:content";
+// import { CollectionEntry, getCollection } from "astro:content";
+// import { format } from "date-fns";
+// import BlogLayout from "../../layouts/BlogLayout.astro";
+// import { ContentContainer } from "../../components/ContentContainer";
+// import DefaultLayout from "../../layouts/DefaultLayout.astro";
+// import { SectionHeader } from "../../components/SectionHeader";
+// import clsx from "clsx";
+// MD components
+// import Pre from "@components/blog/Pre.astro";
+// import "@styles/blogpost.pcss";
+// import { TableOfContents } from "@components/blog/TableOfContents";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("post");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { ...post },
+  }));
+}
+type Props = CollectionEntry<"post">;
+
+const post = Astro.props;
+const { Content, headings } = await post.render();
+---
+
+<div>{post.data.title}</div>
