@@ -4,7 +4,7 @@ import type { PropsWithChildren } from "react";
 type Props = {
   isFat?: boolean;
   className?: string;
-  as?: "div" | "main";
+  as?: "div" | "main" | "footer";
 };
 
 export function ContentContainer({
