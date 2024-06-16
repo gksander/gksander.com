@@ -6,10 +6,12 @@ export function OptimizedImage({
   className,
   id,
   isHighPriority,
+  style,
   ignoreAspectRatio,
 }: {
   image: OptimizedImageDetails;
   alt: string;
+  style?: React.CSSProperties;
   className?: string;
   id?: string;
   isHighPriority?: boolean;
@@ -35,6 +37,7 @@ export function OptimizedImage({
           aspectRatio: ignoreAspectRatio
             ? undefined
             : `${image.attributes.width} / ${image.attributes.height}`,
+          ...style,
         }}
         {...image.attributes}
         id={id}

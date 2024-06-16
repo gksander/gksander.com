@@ -1,0 +1,41 @@
+@tailwind utilities;
+
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+
+/* html,
+body {
+  @apply overflow-x-hidden;
+} */
+
+/* 
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-800 via-secondary-400 to-primary-600 bg-clip-text text-transparent
+            dark:from-primary-200 dark:via-secondary-500 dark:to-primary-400;
+  }
+  .bg-primary-gradient {
+    @apply bg-gradient-to-tr from-primary-800 via-secondary-500 to-primary-600;
+  }
+} */
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Default styling for scroll bars */
+*::-webkit-scrollbar {
+  /* width: 15px; */
+  @apply w-2 h-2;
+}
+*::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-700 rounded;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

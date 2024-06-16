@@ -1,9 +1,16 @@
+import colors from "tailwindcss/colors";
+import typography from "@tailwindcss/typography";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
       colors: {
+        // TODO: get rid of these...
+        primary: colors.cyan,
+        secondary: colors.blue,
+
         background: "#E4E3D8",
         accent: {
           DEFAULT: "#486242",
@@ -24,5 +31,6 @@ export default {
       center: true,
     },
   },
-  plugins: [],
+
+  plugins: [typography],
 };

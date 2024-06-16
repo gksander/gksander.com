@@ -1,21 +1,106 @@
 ---
+import "@styles/global.pcss";
+import { ViewTransitions } from "astro:transitions";
+
 interface Props {
-  title: string;
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  image?: string;
+  isFat?: boolean;
+  hasKatex?: boolean;
 }
 
-const { title } = Astro.props;
+const {
+  title = "Grant Sander",
+  description = "Grant Sander's personal site.",
+  keywords = [],
+  image,
+  isFat = false,
+  hasKatex = false,
+} = Astro.props;
+
+// TODO: enable
+// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical URL -->
+    <!-- <link rel="canonical" href={canonicalURL} /> -->
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(", ")} />
+
+    <!-- RSS -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="/rss.xml"
+      title="RSS 2.0"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {image && <meta property="og:image" content={new URL(image, Astro.url)} />}
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    {
+      image && (
+        <meta property="twitter:image" content={new URL(image, Astro.url)} />
+      )
+    }
+
+    <!-- Katex -->
+    {
+      hasKatex && (
+        <>
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+            integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn"
+            crossorigin="anonymous"
+          />
+          <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+            integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx"
+            crossorigin="anonymous"
+          />
+          <script
+            type="text/javascript"
+            charset="UTF-8"
+            src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"
+          />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css"
+          />
+        </>
+      )
+    }
+
+    <ViewTransitions />
   </head>
+
   <body class="min-h-screen bg-background text-black">
     <div class="fixed inset-0 bg-[url('/concrete-wall.png')] z-[-1]"></div>
     <slot />

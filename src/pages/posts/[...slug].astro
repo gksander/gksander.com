@@ -1,17 +1,10 @@
 ---
 // import "@fontsource-variable/jetbrains-mono";
+import { TableOfContents } from "@components/posts/TableOfContents";
 import { getCollection, type CollectionEntry } from "astro:content";
-// import { CollectionEntry, getCollection } from "astro:content";
-// import { format } from "date-fns";
-// import BlogLayout from "../../layouts/BlogLayout.astro";
-// import { ContentContainer } from "../../components/ContentContainer";
-// import DefaultLayout from "../../layouts/DefaultLayout.astro";
-// import { SectionHeader } from "../../components/SectionHeader";
-// import clsx from "clsx";
-// MD components
-// import Pre from "@components/blog/Pre.astro";
-// import "@styles/blogpost.pcss";
-// import { TableOfContents } from "@components/blog/TableOfContents";
+import clsx from "clsx";
+import Layout from "src/layouts/Layout.astro";
+import "@styles/blogpost.pcss";
 
 export async function getStaticPaths() {
   const posts = await getCollection("post");
@@ -26,4 +19,20 @@ const post = Astro.props;
 const { Content, headings } = await post.render();
 ---
 
-<div>{post.data.title}</div>
+<Layout title={`${post.data.title} | Grant Sander`}>
+  <main class="container max-w-content p-6 pt-12 flex flex-col gap-y-16">
+    <div class="flex-grow overflow-hidden col-start-1">
+      <div
+        class={clsx(
+          "max-w-none prose",
+          "prose-code:before:hidden prose-code:after:hidden prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:bg-gray-100 dark:prose-code:bg-gray-700 prose-code:font-medium",
+          "hover:prose-a:text-primary-700 dark:hover:prose-a:text-primary-300"
+        )}
+      >
+        <Content />
+      </div>
+    </div>
+
+    <TableOfContents headings={headings} client:visible />
+  </main>
+</Layout>

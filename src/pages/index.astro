@@ -1,18 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import {} from "astro:assets";
-import Hero from "../components/homepage/Hero.astro";
 import Background from "@components/homepage/Background.astro";
 import Projects from "@components/homepage/Projects.astro";
 import RecentPosts from "@components/homepage/RecentPosts.astro";
+import { ContentContainer } from "@components/ContentContainer";
+import { Header } from "@components/Header";
+import { HEADSHOT_WIDTH, Hero } from "@components/Hero";
+import _headshot from "@assets/headshot.png";
+import { getOptimizedImageSrc } from "src/utils/getOptimizedImageSrc";
+import { HeroFancy } from "@components/homepage/HeroFancy";
+
+const headshot = await getOptimizedImageSrc({
+  src: _headshot,
+  width: 2 * HEADSHOT_WIDTH,
+});
+
+const description = `TypeScript connoisseur. Animation aficionado. Frontend web, mostly React and Next.js. Cross-platform mobile with React Native. Backend with Node.js and Python. Have written an SQL query or two. Can wrangle the cloud when needed.`;
 ---
 
 <Layout title="Welcome to Astro.">
-  <main class="container max-w-content p-6 pt-12 flex flex-col gap-y-32">
-    <Hero />
+  <HeroFancy headshot={headshot} client:visible />
+
+  <ContentContainer as="main" className="py-12 flex flex-col gap-y-32">
     <Background />
     <RecentPosts />
     <Projects />
-  </main>
+  </ContentContainer>
 </Layout>

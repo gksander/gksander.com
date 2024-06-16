@@ -4,6 +4,8 @@ const post = defineCollection({
   type: "content",
   // Type-check frontmatter using a schema
   schema: z.object({
+    style: z.enum(["longform", "fiddle"]).optional().default("longform"),
+
     title: z.string(),
     description: z.string(),
     metaDescription: z.string().optional(),

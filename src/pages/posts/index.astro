@@ -1,7 +1,28 @@
 ---
+import { ContentContainer } from "@components/ContentContainer";
+import { Header } from "@components/Header";
+import { HEADSHOT_WIDTH, Hero } from "@components/Hero";
+import { PostCard } from "@components/PostCard";
+import SectionContainer from "@components/SectionContainer.astro";
 import Layout from "src/layouts/Layout.astro";
+import { getOptimizedImageSrc } from "src/utils/getOptimizedImageSrc";
+import { getPosts } from "src/utils/getPosts";
+import _headshot from "@assets/headshot.png";
+
+const posts = await getPosts();
+
+const headshot = await getOptimizedImageSrc({
+  src: _headshot,
+  width: 2 * HEADSHOT_WIDTH,
+});
 ---
 
 <Layout title="Posts from Grant">
-  <div>Posts</div>
+  <Header />
+  <ContentContainer as="main" className="flex flex-col gap-y-32 py-12">
+    <Hero title="I like to write." headshot={headshot} />
+    <SectionContainer title="Posts from Grant" subtitle="Idk">
+      {posts.map((post) => <PostCard post={post} />)}
+    </SectionContainer>
+  </ContentContainer>
 </Layout>

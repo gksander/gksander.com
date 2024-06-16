@@ -3,6 +3,13 @@ import headshot from "@assets/headshot.png";
 import { Image } from "astro:assets";
 import { LOGOS as _LOGOS } from "@components/homepage/Logos";
 
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
 const { HTMLLogo, CSSLogo, TSLogo, ReactLogo, TWLogo, NodeLogo, PythonLogo } =
   _LOGOS;
 
@@ -43,14 +50,9 @@ function getCoords(i: number, N: number = LOGOS.length) {
   <div class="p-6 flex flex-1 flex-col gap-y-6">
     <div class="flex flex-col gap-y-1">
       <div class="text-2xl font-medium text-background">I'm Grant.</div>
-      <h1 class="text-5xl font-bold">I like to build.</h1>
+      <h1 class="text-5xl font-bold">{title}</h1>
     </div>
-    <p class="text-sm">
-      TypeScript connoisseur. Animation aficionado. Frontend web, mostly React
-      and Next.js. Cross-platform mobile with React Native. Backend with Node.js
-      and Python. Have written an SQL query or two. Can wrangle the cloud when
-      needed.
-    </p>
+    {description && <p class="text-sm">{description}</p>}
   </div>
   <div class="flex-shrink-0">
     <div
