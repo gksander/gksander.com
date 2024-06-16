@@ -23,7 +23,11 @@ const EXPERIENCES: IExperience[] = await Promise.all(
         description: `Full-stack web development using React and Python. Leading initiatives to streamline cardholder and admin workflows.`,
         time: "Oct. 2023 &ndash; Present",
         logo: RampIcon,
-        accomplishments: ["Build cool shit.", "Other stuff."],
+        accomplishments: [
+          "Led a team of fantastic engineers on the spend management frontend team.",
+          "Led the development of a new cardholder experience on web.",
+          "Overhauled Ramp's card transaction detail view (a core view of the product).",
+        ],
       },
       {
         title: "VP of Engineering",
@@ -31,6 +35,11 @@ const EXPERIENCES: IExperience[] = await Promise.all(
         description: `Helping client engineering teams shine their brightest. Overseeing the development of open source software and community outreach.`,
         time: "June 2022 &ndash; Oct 2023",
         logo: FormidableIcon,
+        accomplishments: [
+          "Oversaw client projects and ensured client teams had what they needed to succeed.",
+          "Led client projects as an IC when needed.",
+          "Led the open source program at Formidable, maintaining existing projects and creating new ones based on client needs and ecosystem trends.",
+        ],
       },
       {
         title: "Sr. Software Engineer",
@@ -38,6 +47,10 @@ const EXPERIENCES: IExperience[] = await Promise.all(
         description: `Full stack web and mobile on the Platform team. Built client SDKs and developer tools to help third parties integrate with Coinbase's fiat payment rails.`,
         time: `Nov. 2021 &ndash; June 2022`,
         logo: Coinbase,
+        accomplishments: [
+          "Helped bring Coinbase Pay to market, allowing partners to use Coinbase's fiat rails to on-ramp into the crypto ecosystem.",
+          "Development of Coinbase Pay SDKs for web and mobile.",
+        ],
       },
       {
         title: "Sr. Software Engineer",
@@ -45,6 +58,11 @@ const EXPERIENCES: IExperience[] = await Promise.all(
         description: `Software consultant, building software and helping others build software better. Focus on front-end web and native mobile using primarily JS tooling.`,
         time: `Mar. 2021 &ndash; Nov. 2021`,
         logo: FormidableIcon,
+        accomplishments: [
+          "Helped shape the foundation for Puma's global cross-platform mobile app.",
+          "Launched Android app for a major news organization using React Native, setting the foundation for them to later consolidate their iOS app into the same codebase.",
+          "Modernized a video game store's web presence, migrating to Next.js and TailwindCSS to improve performance and enable more sophisticated UI patterns.",
+        ],
       },
       {
         title: "Sr. Software Engineer",
@@ -52,6 +70,11 @@ const EXPERIENCES: IExperience[] = await Promise.all(
         description: `Team lead on health/insurance tech client. Full-stack web and mobile. TypeScript, React, React Native, and Node.js.`,
         time: `Jan. 2020 &ndash; Mar. 2021`,
         logo: Synapse,
+        accomplishments: [
+          "Led a team of mobile engineers to maintain and deliver improvements to a suite of fitness-related mobile applications.",
+          "Lead maintainer of the Silver Sneakers mobile application using React Native.",
+          "Brought the Tivity Prime mobile app to market using React Native.",
+        ],
       },
       {
         title: "Sr. Software Engineer",
@@ -59,6 +82,11 @@ const EXPERIENCES: IExperience[] = await Promise.all(
         description: `Full-stack web and mobile development. React Native, Vue.JS, and Ruby on Rails.`,
         time: `Sept. 2019 &ndash; Jan. 2020`,
         logo: Henri,
+        accomplishments: [
+          "Lead mobile app developer, modernizing the Henri Home mobile application using React Native and MobX.",
+          "Lead the web development team in migrating the Henri Home web application from React to Vue.",
+          "Full-stack development of new features across web and mobile, using Ruby on Rails on the backend, Vue.js on the frontend, and React Native on mobile.",
+        ],
       },
       {
         title: `Software Engineer`,
@@ -66,19 +94,22 @@ const EXPERIENCES: IExperience[] = await Promise.all(
         description: `Full-stack web development of eCommerce sites and internal tools. Vue.js, NodeJS, and MongoDB.`,
         time: `Aug. 2018 &ndash; Sept. 2019`,
         logo: Artisan,
+        accomplishments: [
+          "Rewrote primary e-commerce site from PHP to Node.js and Vue.js (Nuxt).",
+          "Maintenance and development of internal systems using PHP, Node.js, and Vue.js.",
+        ],
       },
       {
-        title: `Software Engineer`,
-        company: "COSma Learning",
-        description: `Development and R&D of custom online math courseware. JavaScript, PHP, and MySQL.`,
-        time: `Jan. 2015 &ndash; Aug. 2018`,
-      },
-      {
-        title: `Math Instructor`,
+        title: `Research Associate and Math Instructor`,
         company: "Arizona State Univ.",
         description: `Taught calculus and precalculus. Lead professional development workshops. R&D of online courseware.`,
         time: `May 2014 &ndash; Aug. 2018`,
         logo: ASU,
+        accomplishments: [
+          "Taught pre-calculus, calculus, and math education courses.",
+          "Developed research-based online math courseware grounded in conceptual learning. Use of PHP, MySQL, and JavaScript to development interactive courseware.",
+          "Lead professional development workshops for secondary and college instructors across the country.",
+        ],
       },
     ] as (IExperience & { logo?: ImageMetadata })[]
   ).map(async (exp) => ({
@@ -86,7 +117,7 @@ const EXPERIENCES: IExperience[] = await Promise.all(
     logo: exp.logo
       ? await getOptimizedImageSrc({ src: exp.logo, width: 100 })
       : undefined,
-  }))
+  })),
 );
 
 type IExperience = {

@@ -23,7 +23,7 @@ export function ExpandableBackground({ items }: Props) {
   const restItems = items.slice(MAX_ITEMS_SHOWN);
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-12">
       <AnimatePresence initial={false} mode="popLayout">
         {visibleItems.map((item, idx) => (
           <ExperienceItemCard
@@ -82,9 +82,9 @@ function ExperienceItemCard({
             {item.accomplishments.map((accomplishment) => (
               <li
                 key={accomplishment}
-                className="text-subtle-copy flex gap-x-2 items-center"
+                className="text-subtle-copy flex gap-x-2 items-start"
               >
-                <FaCheck className="w-2" />
+                <FaCheck className="w-2 pt-1.5" />
                 {accomplishment}
               </li>
             ))}

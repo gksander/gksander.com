@@ -16,12 +16,14 @@ export function PostCard({ post }: Props) {
   return (
     <div className="flex flex-col gap-y-3">
       <div>
-        <a className="font-bold" href={href}>
+        <div className="text-xs text-black-light font-medium">
+          {formattedDate}
+        </div>
+        <a className="text-lg font-bold" href={href}>
           {title}
         </a>
-        <div className="text-black-light text-sm">{formattedDate}</div>
       </div>
-      <div className="text-sm">{description}</div>
+      <div className="text-sm text-subtle-copy">{description}</div>
     </div>
   );
 }
