@@ -21,8 +21,8 @@ const headshot = await getOptimizedImageSrc({
   <Header />
   <ContentContainer as="main" className="flex flex-col gap-y-32 py-12">
     <Hero title="I like to write." headshot={headshot} />
-    <SectionContainer title="Posts from Grant" subtitle="Idk">
+    <div class="grid gap-y-12">
       {posts.map((post) => <PostCard post={post} />)}
-    </SectionContainer>
+    </div>
   </ContentContainer>
 </Layout>

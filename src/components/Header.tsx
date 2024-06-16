@@ -11,7 +11,10 @@ export function Header() {
         </a>
 
         <div className="flex gap-4 md:gap-6 items-center text-black">
-          <a href="/posts" className="">
+          <a
+            href="/posts"
+            className="font-bold text-sm px-3 py-1 -mr-3 rounded-full hover:bg-background-dark transition-colors duration-150"
+          >
             Posts
           </a>
 

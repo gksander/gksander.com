@@ -3,6 +3,7 @@ import { PostCard } from "@components/PostCard";
 import SectionContainer from "@components/SectionContainer.astro";
 import { getCollection } from "astro:content";
 import { getPosts } from "src/utils/getPosts";
+import { MdArrowRightAlt } from "react-icons/md";
 
 const posts = (await getPosts()).slice(0, 5);
 ---
@@ -11,9 +12,16 @@ const posts = (await getPosts()).slice(0, 5);
   title="Recent Posts"
   subtitle="Some things I've written or tinked with lately."
 >
-  <div class="grid gap-y-8">
+  <div class="flex flex-col gap-y-8">
     {posts.map((post) => <PostCard post={post} />)}
 
-    <a href="/posts">More</a>
+    <div>
+      <a
+        href="/posts"
+        class="rounded p-2 -ml-2 text-sm font-bold flex items-center gap-x-1 cursor-pointer w-fit"
+      >
+        And more <MdArrowRightAlt />
+      </a>
+    </div>
   </div>
 </SectionContainer>

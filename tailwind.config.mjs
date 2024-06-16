@@ -11,7 +11,10 @@ export default {
         primary: colors.cyan,
         secondary: colors.blue,
 
-        background: "#E4E3D8",
+        background: {
+          DEFAULT: "#E4E3D8",
+          dark: "#d0d0ad",
+        },
         accent: {
           DEFAULT: "#486242",
           light: "#8BA484",

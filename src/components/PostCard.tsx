@@ -14,16 +14,21 @@ export function PostCard({ post }: Props) {
   const href = isExternalPost(post) ? post.data.href : `/posts/${post.slug}`;
 
   return (
-    <div className="flex flex-col gap-y-3">
-      <div>
-        <div className="text-xs text-black-light font-medium">
-          {formattedDate}
+    <div>
+      <a
+        className="flex flex-col gap-y-3"
+        href={href}
+        target={isExternalPost(post) ? "_blank" : undefined}
+        rel={isExternalPost(post) ? "noopener noreferrer" : undefined}
+      >
+        <div>
+          <div className="text-xs text-black-light font-medium">
+            {formattedDate}
+          </div>
+          <div className="text-lg font-bold">{title}</div>
         </div>
-        <a className="text-lg font-bold" href={href}>
-          {title}
-        </a>
-      </div>
-      <div className="text-sm text-subtle-copy">{description}</div>
+        <div className="text-sm text-subtle-copy">{description}</div>
+      </a>
     </div>
   );
 }
