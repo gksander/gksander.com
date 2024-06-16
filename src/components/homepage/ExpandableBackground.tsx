@@ -78,13 +78,13 @@ function ExperienceItemCard({
         </div>
         <div className="text-subtle-copy text-sm">{item.description}</div>
         {item.accomplishments && (
-          <ul className="text-sm text-subtle-copy flex flex-col gap-y-0.5">
+          <ul className="text-sm text-subtle-copy flex flex-col gap-y-1">
             {item.accomplishments.map((accomplishment) => (
               <li
                 key={accomplishment}
                 className="text-subtle-copy flex gap-x-2 items-start"
               >
-                <FaCheck className="w-3.5 h-3.5 pt-1.5" />
+                <FaCheck className="w-3.5 h-3.5 pt-1.5 shrink-0" />
                 {accomplishment}
               </li>
             ))}
