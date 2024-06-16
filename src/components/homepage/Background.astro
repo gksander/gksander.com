@@ -23,6 +23,7 @@ const EXPERIENCES: IExperience[] = await Promise.all(
         description: `Full-stack web development using React and Python. Leading initiatives to streamline cardholder and admin workflows.`,
         time: "Oct. 2023 &ndash; Present",
         logo: RampIcon,
+        accomplishments: ["Build cool shit.", "Other stuff."],
       },
       {
         title: "VP of Engineering",
@@ -94,6 +95,7 @@ type IExperience = {
   description: string;
   time: string;
   logo?: OptimizedImageDetails;
+  accomplishments?: string[];
 };
 ---
 
