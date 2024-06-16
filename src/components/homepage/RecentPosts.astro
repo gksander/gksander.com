@@ -7,7 +7,10 @@ import { getPosts } from "src/utils/getPosts";
 const posts = (await getPosts()).slice(0, 5);
 ---
 
-<SectionContainer title="Recent Posts" subtitle="...">
+<SectionContainer
+  title="Recent Posts"
+  subtitle="Some things I've written or tinked with lately."
+>
   <div class="grid gap-y-8">
     {posts.map((post) => <PostCard post={post} />)}
 

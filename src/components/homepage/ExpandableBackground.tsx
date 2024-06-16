@@ -58,7 +58,7 @@ function ExperienceItemCard({
   return (
     <motion.div
       layout
-      className="flex gap-x-4 items-end"
+      className="flex sm:gap-x-4 items-end"
       initial={{ opacity: 0, y: 5 }}
       animate={{
         opacity: 1,
@@ -84,7 +84,7 @@ function ExperienceItemCard({
                 key={accomplishment}
                 className="text-subtle-copy flex gap-x-2 items-start"
               >
-                <FaCheck className="w-2 pt-1.5" />
+                <FaCheck className="w-3.5 h-3.5 pt-1.5" />
                 {accomplishment}
               </li>
             ))}
@@ -96,7 +96,7 @@ function ExperienceItemCard({
         <OptimizedImage
           image={item.logo}
           alt={`${item.company} logo`}
-          className="block w-16 h-16 object-contain aspect-square flex-shrink-0 opacity-30 grayscale"
+          className="hidden sm:block w-16 h-16 object-contain aspect-square flex-shrink-0 opacity-30 grayscale"
         />
       )}
     </motion.div>

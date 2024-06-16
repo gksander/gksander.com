@@ -14,7 +14,7 @@ export function Hero({ title, description, headshot }: Props) {
       <div className="p-6 flex flex-1 flex-col gap-y-6">
         <div className="flex flex-col gap-y-1">
           <div className="text-2xl font-medium text-background">I'm Grant.</div>
-          <h1 className="text-5xl font-bold">{title}</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold">{title}</h1>
         </div>
         {description && <p className="text-sm">{description}</p>}
       </div>
