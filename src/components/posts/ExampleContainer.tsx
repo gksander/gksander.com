@@ -9,7 +9,7 @@ export function ExampleContainer(
   props: PropsWithChildren<ExampleContainerProps>,
 ) {
   return (
-    <div className="rounded-md shadow bg-gray-50 dark:bg-gray-700 not-prose">
+    <div className="rounded-md bg-background border border-background-dark not-prose">
       <div className="py-2 mb-2 px-3">
         <p className="font-medium mb-1">{props.title}</p>
         {props.instructions && (

@@ -116,12 +116,10 @@ export function BadZooming() {
 const Container = forwardRef<HTMLDivElement, { title: string }>(
   ({ title }, ref) => (
     <div>
-      <p className="mb-1 font-medium text-gray-700 dark:text-gray-300">
-        {title}
-      </p>
+      <p className="mb-1 font-medium text-black-light">{title}</p>
       <div
         ref={ref}
-        className="aspect-square rounded overflow-hidden bg-gray-100 dark:bg-gray-600"
+        className="aspect-square rounded overflow-hidden border border-background-dark"
       />
     </div>
   ),

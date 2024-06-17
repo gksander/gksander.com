@@ -102,7 +102,7 @@ export function CanvasZooming() {
           ref={canvasRef}
           width={SIZE}
           height={SIZE}
-          className="border rounded overflow-hidden"
+          className="border border-background-dark rounded overflow-hidden"
         />
       </div>
     </ExampleContainer>

@@ -1,7 +1,5 @@
 import { ExampleContainer } from "@components/posts/ExampleContainer";
 import { m } from "@utils/math";
-import { useIsDarkMode } from "@utils/useIsDarkMode";
-import { nanoid } from "nanoid";
 import { forwardRef, useEffect, useId, useRef } from "react";
 
 export function TwoDimensionalMapping() {
@@ -9,7 +7,6 @@ export function TwoDimensionalMapping() {
   const inputId = useId();
   const outputRef = useRef<HTMLDivElement>(null);
   const outputId = useId();
-  const isDark = useIsDarkMode();
 
   useEffect(() => {
     const input = inputRef.current;
@@ -21,8 +18,8 @@ export function TwoDimensionalMapping() {
     input.id = inputId;
     output.id = outputId;
 
-    const pointColor = isDark ? "#fff" : "#000";
-    const altColor = isDark ? "rgb(200,200,200)" : "rgb(100,100,100)";
+    const pointColor = "#000";
+    const altColor = "rgb(100,100,100)";
 
     const board1 = window.JXG.JSXGraph.initBoard(inputId, {
       boundingBox: [0, SIZE, SIZE, 0],
@@ -229,7 +226,7 @@ export function TwoDimensionalMapping() {
       window.JXG.JSXGraph.freeBoard(board1);
       window.JXG.JSXGraph.freeBoard(board2);
     };
-  }, [isDark]);
+  }, []);
 
   return (
     <ExampleContainer
@@ -251,12 +248,10 @@ export function TwoDimensionalMapping() {
 const Container = forwardRef<HTMLDivElement, { title: string }>(
   ({ title }, ref) => (
     <div>
-      <p className="mb-1 font-medium text-gray-700 dark:text-gray-300">
-        {title}
-      </p>
+      <p className="mb-1 font-medium text-black-light">{title}</p>
       <div
         ref={ref}
-        className="aspect-square rounded overflow-hidden bg-gray-100 dark:bg-gray-600"
+        className="aspect-square rounded overflow-hidden bg-background"
       />
     </div>
   ),

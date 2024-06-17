@@ -1,13 +1,10 @@
 import { ExampleContainer } from "@components/posts/ExampleContainer";
 import { m } from "@utils/math";
-import { useIsDarkMode } from "@utils/useIsDarkMode";
-import { nanoid } from "nanoid";
 import { useEffect, useId, useRef } from "react";
 
 export function OneDimensionalMapping() {
   const homeRef = useRef<HTMLDivElement>(null);
   const homeId = useId();
-  const isDark = useIsDarkMode();
 
   /**
    * TODO: How to not highlight segments on hover
@@ -17,8 +14,8 @@ export function OneDimensionalMapping() {
 
     if (typeof window === "undefined" || !window.JXG || !home) return;
 
-    const pointColor = isDark ? "#fff" : "#000";
-    const altColor = isDark ? "rgb(200,200,200)" : "rgb(100,100,100)";
+    const pointColor = "#000";
+    const altColor = "rgb(100,100,100)";
 
     home.id = homeId;
     const board = window.JXG.JSXGraph.initBoard(homeId, {
@@ -168,7 +165,7 @@ export function OneDimensionalMapping() {
     return () => {
       window.JXG.JSXGraph.freeBoard(board);
     };
-  }, [isDark]);
+  }, []);
 
   return (
     <ExampleContainer
