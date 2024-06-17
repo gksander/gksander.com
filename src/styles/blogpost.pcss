@@ -1,7 +1,7 @@
 /* Astro images get tangled up and hard to customize. This takes a CSS appproach */
 p:has(> img:only-child) {
   > img {
-    @apply border  rounded-lg overflow-hidden shadow-md mx-auto;
+    @apply border border-background-dark rounded-lg overflow-hidden mx-auto;
   }
 }
 
@@ -33,7 +33,7 @@ pre.shiki {
   }
 
   & code {
-    @apply block min-w-fit pb-2 -mb-5;
+    @apply block min-w-fit pb-2 -mb-5 bg-background;
   }
 
   & div.line {
@@ -117,6 +117,6 @@ pre.shiki {
 }
 
 /* KaTeX responsive sizing */
-div.math-display {
-  @apply text-sm md:text-base max-w-full overflow-x-auto;
+span.katex-display {
+  @apply block text-sm md:text-base max-w-full overflow-x-auto overflow-y-hidden;
 }

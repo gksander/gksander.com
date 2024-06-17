@@ -15,6 +15,7 @@ export default {
         secondary: colors.blue,
 
         background: {
+          light: "#deded0",
           DEFAULT: "#E4E3D8",
           dark: "#d0d0ad",
         },

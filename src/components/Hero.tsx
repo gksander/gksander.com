@@ -11,10 +11,12 @@ type Props = {
 export function Hero({ title, description, headshot }: Props) {
   return (
     <section className="bg-gradient-to-br from-accent to-accent-light rounded-xl overflow-hidden text-white flex flex-col sm:flex-row justify-end items-end">
-      <div className="p-6 flex flex-1 flex-col gap-y-6">
+      <div className="p-6 flex flex-1 flex-col gap-y-6 self-start sm:self-end">
         <div className="flex flex-col gap-y-1">
           <div className="text-2xl font-medium text-background">I'm Grant.</div>
-          <h1 className="text-4xl sm:text-5xl font-bold font-fancy">{title}</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold font-fancy bg-white font-brick">
+            {title}
+          </h1>
         </div>
         {description && <p className="text-sm">{description}</p>}
       </div>

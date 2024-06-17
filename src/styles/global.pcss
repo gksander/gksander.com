@@ -10,16 +10,13 @@ body {
   @apply overflow-x-hidden;
 } */
 
-/*
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-primary-800 via-secondary-400 to-primary-600 bg-clip-text text-transparent
-            dark:from-primary-200 dark:via-secondary-500 dark:to-primary-400;
+  .font-brick {
+    background-image: url("/dark-brick-wall.png");
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .bg-primary-gradient {
-    @apply bg-gradient-to-tr from-primary-800 via-secondary-500 to-primary-600;
-  }
-} */
+}
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

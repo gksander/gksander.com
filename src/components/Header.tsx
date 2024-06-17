@@ -10,14 +10,17 @@ export function Header({ isFat = false }: Props) {
   return (
     <nav>
       <ContentContainer className="flex justify-between py-5" isFat={isFat}>
-        <a href="/" className="inline-block font-bold text-lg">
+        <a
+          href="/"
+          className="inline-block font-bold text-lg bg-accent font-brick"
+        >
           gksander
         </a>
 
         <div className="flex gap-4 md:gap-6 items-center text-black">
           <a
             href="/posts"
-            className="font-bold text-sm px-3 py-1 -mr-3 rounded-full hover:bg-background-dark transition-colors duration-150"
+            className="font-bold text-sm px-3 py-1 -mr-3 rounded-full hover:bg-background-light transition-colors duration-150"
           >
             Posts
           </a>

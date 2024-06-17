@@ -26,8 +26,10 @@ const formattedPubDate = format(post.data.pubDate, "MMMM d, yyyy");
 
 const PROSE_CLASSES = [
   "max-w-none prose",
-  "prose-code:before:hidden prose-code:after:hidden prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-medium",
+  "prose-code:before:hidden prose-code:after:hidden prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-code:bg-background-light",
   "hover:prose-a:text-accent",
+  // Blockquote
+  "prose-blockquote:border-l-background-dark marker:text-subtle-copy",
 ];
 ---
 
