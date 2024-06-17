@@ -9,7 +9,7 @@ export function Counter() {
   }, []);
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 not-prose">
+    <div className="bg-background border border-background-dark rounded p-3 not-prose">
       <p>I'm a Preact component! Here's the time.</p>
       <p className="font-medium">{timeDisplay}</p>
     </div>

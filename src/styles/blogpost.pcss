@@ -1,13 +1,13 @@
 /* Astro images get tangled up and hard to customize. This takes a CSS appproach */
 p:has(> img:only-child) {
   > img {
-    @apply border dark:border-gray-700 rounded-lg overflow-hidden shadow-md mx-auto;
+    @apply border  rounded-lg overflow-hidden shadow-md mx-auto;
   }
 }
 
 pre.shiki {
   --shiki-color-text: theme("colors.primary.800");
-  --shiki-color-background: theme("colors.transparent");
+  --shiki-color-background: theme("colors.background.DEFAULT");
   --shiki-token-constant: theme("colors.primary.700");
   --shiki-token-string: #770000;
   --shiki-token-comment: theme("colors.gray.500");
@@ -18,14 +18,14 @@ pre.shiki {
   --shiki-token-punctuation: theme("colors.gray.700");
   --shiki-token-link: #ee0000;
 
-  @apply relative py-0 p-4 pb-0 rounded bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-black;
+  @apply relative pt-2 px-0 pb-6 rounded border border-background-dark;
   @apply text-xs md:text-sm;
   & * {
     font-family: "JetBrains Mono Variable", monospace;
   }
 
   .language-id {
-    @apply absolute bottom-2 right-4 leading-none text-primary-700 dark:text-primary-400;
+    @apply absolute bottom-2 right-4 leading-none text-accent;
   }
 
   & div.code-container {
@@ -46,23 +46,23 @@ pre.shiki {
     @apply overflow-hidden;
 
     .popover {
-      @apply ml-8 py-1 px-3 relative inline-block rounded bg-gray-300 dark:bg-gray-600 text-primary-700 dark:text-primary-300 bg-opacity-70 mt-3 mb-1;
+      @apply ml-8 py-1 px-3 relative inline-block rounded bg-background-dark text-black-light bg-opacity-70 mt-3 mb-1;
       @apply flex-shrink overflow-ellipsis text-xs;
     }
     .popover::before {
       content: "";
-      @apply block absolute w-0 h-0 border-l-8 border-b-[10px] border-r-8 border-transparent border-b-gray-300 dark:border-b-gray-600 -top-2;
+      @apply block absolute w-0 h-0 border-l-8 border-b-[10px] border-r-8 border-transparent border-b-gray-300 -top-2;
     }
   }
 
   /* For twoslash errors */
 
   & data-err {
-    @apply underline decoration-wavy decoration-red-400 dark:decoration-red-600;
+    @apply underline decoration-wavy decoration-red-400 ;
   }
 
   .error {
-    @apply flex w-fit min-w-full items-center gap-2 border-t-4 border-red-400 dark:border-red-600 rounded-sm mt-2 mb-1 p-3 bg-gray-200 dark:bg-gray-800 text-xs;
+    @apply flex w-fit min-w-full items-center gap-2 border-t-4 border-red-400 rounded-sm mt-2 mb-1 p-3 bg-background-dark text-black-light text-xs;
 
     > span:first-child {
       @apply flex-1;
@@ -104,22 +104,6 @@ pre.shiki {
       width: 1rem;
       @apply mr-6 pl-2 inline-block text-right text-gray-400;
     }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  pre.shiki {
-    --shiki-color-text: theme("colors.primary.300");
-    --shiki-color-background: theme("colors.transparent");
-    --shiki-token-constant: theme("colors.primary.400");
-    --shiki-token-string: #770000;
-    --shiki-token-comment: theme("colors.gray.300");
-    --shiki-token-keyword: theme("colors.amber.300");
-    --shiki-token-parameter: theme("colors.red.500");
-    --shiki-token-function: theme("colors.primary.300");
-    --shiki-token-string-expression: theme("colors.secondary.300");
-    --shiki-token-punctuation: theme("colors.gray.300");
-    --shiki-token-link: #ee0000;
   }
 }
 
