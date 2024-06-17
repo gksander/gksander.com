@@ -5,5 +5,8 @@ export async function getPosts() {
   const externalPosts = await getCollection("externalPost");
   const posts = await getCollection("post");
 
-  return sortBy([...externalPosts, ...posts], "pubDate").reverse();
+  return sortBy(
+    [...externalPosts, ...posts],
+    (post) => new Date(post.data.pubDate),
+  ).reverse();
 }

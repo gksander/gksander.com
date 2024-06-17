@@ -27,7 +27,8 @@ export default {
         "subtle-copy": "#505047",
       },
       maxWidth: {
-        content: "55rem",
+        content: "50rem",
+        "wide-content": "62rem",
       },
     },
     container: {

@@ -2,10 +2,14 @@ import { ContentContainer } from "@components/ContentContainer";
 import { FaGithub } from "@components/FaGithub";
 import { FaLinkedIn } from "@components/FaLinkedIn";
 
-export function Header() {
+type Props = {
+  isFat?: boolean;
+};
+
+export function Header({ isFat = false }: Props) {
   return (
     <nav>
-      <ContentContainer className="flex justify-between py-5">
+      <ContentContainer className="flex justify-between py-5" isFat={isFat}>
         <a href="/" className="inline-block font-bold text-lg">
           gksander
         </a>

@@ -1,0 +1,170 @@
+---
+title: "Automated Open Graph Images with Astro"
+description: "How to write a custom Astro route to generate Open Graph images for you based on your content."
+keywords:
+  - Astro
+  - Open Graph
+  - Canvas
+  - Node.js
+  - TypeScript
+pubDate: "Aug 04 2023"
+---
+
+## What is Open Graph?
+
+[Open Graph](https://ogp.me/) is a protocol that aims to standardize the use of HTML meta tags within a webpage to represent the content of the page, which allows various platforms across the internet to give a preview of the page when it is shared. This is the same technology that allows you to see a preview of a link when you share it on Twitter, Facebook, Slack, etc.
+
+## Why should I care?
+
+If you're building a personal site, maybe you don't need to care about Open Graph. But if you're building a professional site, you want your social previews to look _nice_. It's the first thing that people see when you share your site, and it's the first impression that people get of your site. You want it to look good (or at least not like shit).
+
+I think Figma has a cool brand and an _amazing_ product. Their Open Graph imagery displays this well:
+
+![Figma's LinkedIn open graph preview](@assets/posts/dynamic-og/figma-og.png)
+
+Whenever you share Figma's site on social media platforms, you'll get a nice illustration of their product and its value proposition. If you're building a professional (or semi-professional) site and you suspect you'll be sharing it across the internet – you're going to want some Open Graph graphics.
+
+The thing is: generating a graphic for each piece of content can be time consuming, and easily overlooked if you're in a hurry. For many pieces of content, this is a prime candidate for automation.
+
+## Automating Open Graph image generation in Astro
+
+My current site is built with [Astro](https://astro.build/). I love it. I also love automation, so I decided to automate the generation of Open Graph images for blog posts.
+
+There's an [`astro-og-canvas`](https://github.com/delucis/astro-og-canvas/tree/latest/packages/astro-og-canvas) library that tries to provide an out-of-the-box solution here, but I found it a bit confusing to use, and too limiting in terms of customizing the style. I decided to use it as inspiration and write my own version so I could customize the graphics to my heart's desire.
+
+### Dynamic images in Astro
+
+Astro has a notion of [endpoints](https://docs.astro.build/en/core-concepts/endpoints/). They follow the same routing logic as the rest of Astro, but you can return data formats other than HTML (like, say, an image buffer!).
+
+We'll create a dynamic endpoint route that'll send back an image buffer. At build time, Astro will save that image buffer as an image file as part of our build output, which we can reference from our blog post HTML meta tags.
+
+Let's start by creating a `src/pages/og/[...route].ts` dynamic endpoint route, and writing a `getStaticPaths` function that will generate a route for each blog post. Most of this setup is just gathering the MDX frontmatter data.
+
+```ts twoslash {23-29}
+// @noErrors
+import path from "node:path";
+import type { CollectionEntry } from "astro:content";
+
+// Our blog frontmatter type
+type BlogData = CollectionEntry<"blog">["data"];
+
+// Import all MDX pages from the content directory
+const rawPages = import.meta.glob("/src/content/**/*.mdx", {
+  eager: true,
+});
+
+// Remove the /src/content/ prefix from the paths
+const pages = Object.entries(rawPages).reduce<Record<string, BlogData>>(
+  (acc, [path, page]) => {
+    acc[path.replace("/src/content/", "")] = (
+      page as { frontmatter: BlogData }
+    ).frontmatter;
+    return acc;
+  },
+  {},
+);
+
+// Indicate the routes we'll create, replacing .mdx extension with .png
+export async function getStaticPaths() {
+  return Object.entries(pages).map(([p, page]) => ({
+    params: { route: p.replace(path.extname(p), "") + ".png" },
+    props: page,
+  }));
+}
+```
+
+With our paths configured, we can write our `get` function that responds to the request to this enpdoint. We'll stub in a `drawOGImage` for now and follow up on that in the next section.
+
+```ts twoslash {8, 10}
+// @noErrors
+import path from "node:path";
+import type { CollectionEntry } from "astro:content";
+
+type BlogData = CollectionEntry<"blog">["data"];
+
+// ...
+
+export async function get({ props }: { props: BlogData }) {
+  return {
+    body: await drawOGImage({ title: props.title }),
+  };
+}
+```
+
+We simply return an object with a `body` field, where in our case `await drawOGImage(/* ... */)` will return a `Buffer` object with our image data.
+
+### Drawing the image
+
+I used [`node-canvas`](https://www.npmjs.com/package/canvas) to draw my images and produce a buffer. This is a widely-used library, and has a drawing API that mirrors the browser's Canvas API – so it's easy to pick up if you're familiar with that.
+
+Let's scratch out a rough implementation of our `drawOGImage` function. I'll skip over some drawing details, because you'd likely want to implement your own drawing logic anyways.
+
+```ts twoslash {20-22, 33-34}
+// @noErrors
+import path from "node:path";
+import pkg from "canvas";
+const { registerFont, createCanvas, loadImage } = pkg;
+
+// ...
+
+// Register montserrat font for use in the canvas
+registerFont(
+  path.resolve(process.cwd(), "src/assets/montserrat-latin-500-normal.ttf"),
+  { family: "Montserrat Thin" },
+);
+
+// Function that implements our drawing logic.
+async function drawOGImage({ title }) {
+  // Set our dimensions and upscale by 2.
+  const SC = 2;
+  const WIDTH = SC * 1200;
+  const HEIGHT = SC * 627;
+
+  // Instantiate the canvas/context objects
+  const canvas = createCanvas(WIDTH, HEIGHT);
+  const ctx = canvas.getContext("2d");
+
+  // Some example drawing code, drawing a red background
+  ctx.fillStyle = "red";
+  ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+  // Example of drawing in some text
+  ctx.font = `120pt 'Montserrat Thin'`;
+  ctx.fillStyle = "black";
+  ctx.fillText(title, 100, 100);
+
+  // And return the canvas as a png buffer.
+  return canvas.toBuffer("image/png");
+}
+```
+
+With this in place, if we run a `yarn build` Astro will generate (perhaps boring) OG images for each of our `.mdx` content files (based on the title fields in those documents) and you should see those showing up in `dist/og/` with file names based on your content file names.
+
+Here's an example output from my setup (that just has a little bit more drawing action going on) based on this blog post:
+
+![Example of open graph image](@assets/posts/dynamic-og/automated-og-with-astro.png)
+
+### Referencing the Open Graph image
+
+Once you've got images generated, you just need to set some appropriate HTML head tags. This will depend on your setup, but at the end of the day you need to end up with some HTML that looks like the following:
+
+```html
+<meta property="og:image" content="/og/YOUR_CONTENT_SLUG.png" />
+<meta property="twitter:image" content="/og/YOUR_CONTENT_SLUG.png" />
+```
+
+In your content render component, just pass the `slug` of your content down through some Astro props and get those set in whatever sort of `Head` component you've built (a bit hand-wavy, I know, but everyone's setup will vary).
+
+With everything in place, you can deploy your site and then go check e.g. [opengraph.xyz](https://www.opengraph.xyz/) to see if your images are showing up as expected!
+
+### Deploying on Vercel
+
+I'm using Vercel to deploy my site, and I ran into a few issues with this setup that I'll document here in case it helps anyone else.
+
+I had to fix some of my JS dependencies: `"canvas": "2.8.0"` and `"jsdom": "^19.0.0"`, and then add a custom install script to add some native dependencies needed by `canvas`:
+
+```txt
+"vercel-install": "yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel giflib-devel"
+```
+
+And then in Vercel I had to customize the `install` script in the project settings to `yarn run vercel-install && yarn install` to install both the native dependencies and the JS dependencies. With this in place, I was able to deploy successfully.

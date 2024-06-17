@@ -17,7 +17,7 @@ export function ContentContainer({
     <Element
       className={clsx([
         "container px-4 md:px-8",
-        isFat ? "max-w-content" : "max-w-content",
+        isFat ? "max-w-wide-content" : "max-w-content",
         className,
       ])}
     >

@@ -28,20 +28,17 @@ export function TableOfContents({ headings }: { headings: MarkdownHeading[] }) {
   }, []);
 
   return (
-    <aside className="hidden lg:block h-fit sticky top-12">
-      <h2 className="text-lg font-bold text-gray-600 dark:text-gray-200 mb-4">
-        Table of Contents
-      </h2>
+    <aside className="hidden lg:block h-fit sticky top-12 text-black">
+      <h2 className="text-lg font-bold mb-4">Table of Contents</h2>
       <div className="flex flex-col gap-y-2 text-sm">
         {headings.map((heading) => (
           <a
             key={heading.slug}
             className={clsx(
-              "font-medium",
               LEFT_MAP[(heading.depth - 2) as keyof typeof LEFT_MAP],
               heading.slug === active
-                ? "text-gradient"
-                : "text-gray-500 dark:text-gray-300",
+                ? "text-accent font-bold" // Active style
+                : "text-black-light font-medium",
             )}
             href={`#${heading.slug}`}
           >

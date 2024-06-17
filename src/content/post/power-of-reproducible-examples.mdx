@@ -1,0 +1,93 @@
+---
+title: "The power of minimal reproducible examples"
+description: "The act of creating minimal reproducible examples will make you a better engineer, and drastically improve your chances of getting bugs fixed."
+keywords:
+  - Open Source Software
+  - OSS
+  - Software engineering
+  - Minimal reproducible example
+  - Software bugs
+pubDate: "Sept 14 2023"
+---
+
+import { Definition } from "@components/posts/Definition";
+
+If you're a developer, there's a damn good chance that you're using Open Source Software (OSS) daily. Whether you're using [React](https://github.com/facebook/react) for frontend development, [cpython](https://github.com/python/cpython) to automate business processes, or something else entirely – chances are your project is underpinned by multiple important pieces of OSS.
+
+There's an important reality that all of us have to face:
+
+> Software engineers aren't perfect. None of them. Nobody writes perfect software.
+
+There _will_ be bugs or "feature gaps" (from _your perspective_) in the OSS that you use, and there _will_ be bugs in the code that you write. When writing day-to-day software, you're destined to run into issues at the intersection of your own code and OSS, and it's _your job_ to determine how to responsibly resolve these issues.
+
+In this post, I want to talk about the power of minimal reproducible examples.
+
+<Definition
+  term="Minimal Reproducible Example"
+  source={{
+    url: "https://en.wikipedia.org/wiki/Minimal_reproducible_example",
+    title: "Wikipedia",
+  }}
+>
+  A minimal reproducible example (abbreviated MRE) is a collection of source
+  code and other data files which allow a bug or problem to be demonstrated and
+  reproduced.
+</Definition>
+
+Reproducible examples help you, they help OSS contributors, shoot – they might even help your teammates.
+
+## Assume that you're the problem
+
+This might be a good life rule too: _first_ assume that you're the problem until you have sufficient evidence otherwise. Remember how nobody writes perfect code? Embrace that, and assume you've screwed something up and try to figure out how.
+
+If after thorough investigation you've concluded that the problem is not you, and you suspect it might be a bug in the underlying OSS that you're using, you should take it upon yourself to try to reproduce that bug in an isolated context (e.g., create a reproducible example).
+
+The act of extracting out what you suspect is a bug in OSS forces you to think hard about and separate out _your code_ from the OSS. This is a wonderful vehicle for identifying if your code is the problem, or if it's truly an issue with the underlying OSS.
+
+If you can reproduce a bug in a context outside of your project, you've got evidence that it's not _your project code_ or other dependencies that's causing the issue. Now, your reproduction code might be flawed – but this step allows you to rule out a large portion of conflating variables and have a much more solid "argument" that there's an issue in the underlying OSS.
+
+This act of separating your code from OSS, and gathering "evidence" that you can make logical arguments with, is an important part of being an "engineer". It allows you to take _something_ of a deductive and/or emperical approach to identifying and reporting a problem.
+
+If you're able to create a minimal reproducible example that's isolated from other non-related dependencies and code and is _expected_ to work based on current documentation for the project, you have a solid case for reporting an issue to the OSS developers.
+
+## Let OSS devs actually help
+
+Most OSS developers do OSS work _for free_. They love the game. They are true saints within the software world. Keep this in mind when using OSS, and especially when you feel the urge to bitch about any particular OSS project... they owe you nothing.
+
+That said, most OSS developers genuinely want to help, so long as they're improving the project that they're working on. But we have to face another reality:
+
+> OSS repositories are often flooded with "issues" along the lines of "how do I...?" or "can you help me...?".
+
+Again, OSS developers often genuinely want to help. But they don't _work for you_. It's not their job to suss out whether the "issue" that you have is because of _your code_ or because of the OSS itself.
+
+Your best bet for getting an OSS developer to actually help/fix/implement something is to bring to the table a _minimal reproducible example_ and a logical argument for why you believe the issue that you're experiencing is because of the OSS and not because of your own code.
+
+When provided a minimal reproducible example, OSS developers can take that code and actually action upon it. They don't have to wade through _your project's code_. They have a starting point for writing a unit test that fails in the current state, and work toward implementing a solution that makes the test pass. This is the thing that they _want_ to do.
+
+In fact, this is why you'll so often see "Provide a minimal reproducible example!" as an explicit requirement for filing bugs in repositories on GitHub. It's the thing that allows OSS developers to reasonably identify actual issues within their project and action upon them.
+
+## Become a better engineer
+
+Beyond filing bugs in OSS repositories, the act of creating minimal reproducible exmaples can help you grow as an engineer.
+
+As I already mentioned, the act of sussing out what you _think_ is the issue from the rest of your project/code/context forces you to better understand your code _and_ the problem. It can help you step back from the problem and identify the variables and moving pieces. It can help you form a logical argument for why something is behaving the way it is (and why you think that's a problem).
+
+Once you have a minimal reproducible example in hand, and an accompanying logical argument for why you believe an issue is outside of the control of your code, you have something concrete to take to your teammate or mentor or manager or stakeholder. You've taken the first step toward acting upon your problem in a systematic way.
+
+## A recent example
+
+[William Candillon](https://github.com/wcandillon) is a champ – I quite admire his work. He's recently been working on [React Native Skia](https://github.com/Shopify/react-native-skia) on behalf of Shopify – which is an incredibly cool library. It's also novel, and not even at a 1.0.0 release. You expect to see some bugs.
+
+[Here's an issue](https://github.com/Shopify/react-native-skia/issues/1653) file in Skia's repo. It was closed by William with a comment:
+
+> I wasn't able to reproduce the crash based on the example you provided but please feel free to reopen if you have a small repo to reproduce the issue or other pointer on what the issue might be.
+
+This is a perfectly reasonable response to an issue filed in a GitHub repo. I ran into this issue after it was closed and it took me awhile to isolate the problem. After [adding in a minimal reproducible example](https://github.com/Shopify/react-native-skia/issues/1653#issuecomment-1699101645), William _quickly_ re-opened the issue with a comment:
+
+> thank you for the nicely reproducible example. We can confirm the issue, and we are currently investigating it.
+
+Creating a minimal reproducible example that's as easy as possible to execute is the quickest way to let an OSS developer help you _and_ help the project that they've already poured so much of their love into.
+
+## Conclusion
+
+And in conclusion: take minimal reproducible examples seriously. Next time you have an urge to file a bug in an OSS project's repo, make damn sure you've got a minimal reproducible example. It'll help you become a better engineer, it'll help you get the attention of someone who is in a position to fix the bug, and it'll drastically improve the chances that said person will _actually_ fix the bug.
