@@ -73,7 +73,7 @@ function ExperienceItemCard({
             dangerouslySetInnerHTML={{ __html: item.time }}
             className="text-xs text-black-light font-medium"
           />
-          <div className="text-lg font-bold">
+          <div className="text-lg font-bold font-fancy">
             {item.title} @ {item.company}
           </div>
         </div>

@@ -6,6 +6,9 @@ export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      fontFamily: {
+        fancy: ['Merriweather Sans Variable', 'sans-serif']
+      },
       colors: {
         // TODO: get rid of these...
         primary: colors.cyan,

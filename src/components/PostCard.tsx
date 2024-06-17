@@ -25,7 +25,7 @@ export function PostCard({ post }: Props) {
           <div className="text-xs text-black-light font-medium">
             {formattedDate}
           </div>
-          <div className="text-lg font-bold">{title}</div>
+          <div className="text-lg font-bold font-fancy">{title}</div>
         </div>
         <div className="text-sm text-subtle-copy">{description}</div>
       </a>
