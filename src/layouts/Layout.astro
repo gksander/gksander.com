@@ -24,7 +24,7 @@ const {
 } = Astro.props;
 
 // TODO: enable
-// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -37,7 +37,7 @@ const {
     <meta name="generator" content={Astro.generator} />
 
     <!-- Canonical URL -->
-    <!-- <link rel="canonical" href={canonicalURL} /> -->
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>

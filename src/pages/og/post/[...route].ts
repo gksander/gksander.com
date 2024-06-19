@@ -7,7 +7,7 @@ import { html } from "satori-html";
 import { Resvg } from "@resvg/resvg-js";
 import type { ReactNode } from "react";
 import { format } from "date-fns";
-import twConfig from "../../../tailwind.config.mjs";
+import twConfig from "../../../../tailwind.config.mjs";
 import { get } from "lodash-es";
 
 type BlogData = CollectionEntry<"post">["data"];
@@ -28,7 +28,7 @@ const rawPages = import.meta.glob("/src/content/**/*.mdx", {
 // Remove the /src/content/ prefix from the paths
 const pages = Object.entries(rawPages).reduce<Record<string, BlogData>>(
   (acc, [path, page]) => {
-    acc[path.replace("/src/content/", "")] = (
+    acc[path.replace("/src/content/post/", "")] = (
       page as { frontmatter: BlogData }
     ).frontmatter;
     return acc;
