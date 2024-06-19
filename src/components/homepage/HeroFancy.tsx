@@ -23,7 +23,7 @@ export function HeroFancy({ headshot }: Props) {
   return (
     <div ref={ref}>
       <Header />
-      <ContentContainer className="pt-24 mb-24  sm:pt-36 sm:mb-36">
+      <ContentContainer className="pt-16 mb-16  sm:pt-36 sm:mb-36">
         <Hero
           title="I like to build."
           description={description}
