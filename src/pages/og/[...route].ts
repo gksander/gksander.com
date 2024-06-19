@@ -51,7 +51,23 @@ const white = get(twConfig, "theme.extend.colors.white") as string;
 const accent = get(twConfig, "theme.extend.colors.accent.DEFAULT") as string;
 const accentLight = get(twConfig, "theme.extend.colors.accent.light") as string;
 
+const headshot = fs
+  .readFileSync(path.resolve(process.cwd(), "src/assets/headshot.png"))
+  .toString("base64");
+
 export async function GET({ props }: { props: BlogData }) {
+  const featuredImagePath = props.ogConfig?.featureImagePath;
+  const imagePath = featuredImagePath
+    ? path.resolve(process.cwd(), `src/assets/${featuredImagePath}`)
+    : path.resolve(process.cwd(), "src/assets/headshot.png");
+  const image = fs.readFileSync(imagePath).toString("base64");
+
+  const shouldPadImage =
+    props.ogConfig?.featureImagePath &&
+    props.ogConfig?.featureImageFullBleed === false;
+
+  const imagePadding = shouldPadImage ? 32 : 0;
+
   const out = html`<div
     style="display: flex; flex-direction: column; padding: 32px; bottom: 0; width: 1200px; height: 630px; background-image: linear-gradient(to bottom right, ${accent}, ${accentLight});"
   >
@@ -68,6 +84,12 @@ export async function GET({ props }: { props: BlogData }) {
       <div style="font-size: 48px;">Grant Sander</div>
       <div style="font-size: 24px;">${format(props.pubDate, "MMMM yyyy")}</div>
     </div>
+
+    <img
+      src="data:image/png;base64,${image}"
+      style="width: ${props.ogConfig?.featureImageWidth ||
+      350}px; position: absolute; right: ${imagePadding}; bottom: ${imagePadding};"
+    />
   </div>`;
 
   const svg = await satori(out as ReactNode, {
@@ -95,9 +117,7 @@ export async function GET({ props }: { props: BlogData }) {
     },
   });
 
-  const image = resvg.render();
-
-  return new Response(image.asPng(), {
+  return new Response(resvg.render().asPng(), {
     headers: {
       "Content-Type": "image/png",
       "Cache-Control": "public, max-age=31536000, immutable",
