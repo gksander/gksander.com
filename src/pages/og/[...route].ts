@@ -46,13 +46,15 @@ export async function getStaticPaths() {
   return [...makeEntries(".png")];
 }
 
+const black = get(twConfig, "theme.extend.colors.black.DEFAULT") as string;
 const blackLight = get(twConfig, "theme.extend.colors.black.light") as string;
-const white = get(twConfig, "theme.extend.colors.white") as string;
-const accent = get(twConfig, "theme.extend.colors.accent.DEFAULT") as string;
-const accentLight = get(twConfig, "theme.extend.colors.accent.light") as string;
+const background = get(
+  twConfig,
+  "theme.extend.colors.background.DEFAULT",
+) as string;
 
-const headshot = fs
-  .readFileSync(path.resolve(process.cwd(), "src/assets/headshot.png"))
+const texture = fs
+  .readFileSync(path.resolve(process.cwd(), "public/img/concrete-wall.png"))
   .toString("base64");
 
 export async function GET({ props }: { props: BlogData }) {
@@ -69,20 +71,26 @@ export async function GET({ props }: { props: BlogData }) {
   const imagePadding = shouldPadImage ? 32 : 0;
 
   const out = html`<div
-    style="display: flex; flex-direction: column; padding: 32px; bottom: 0; width: 1200px; height: 630px; background-image: linear-gradient(to bottom right, ${accent}, ${accentLight});"
+    style="display: flex; flex-direction: column; padding: 32px; bottom: 0; width: 1200px; height: 630px; background-color: ${background}; background-image: url(data:image/png;base64,${texture});"
   >
+    <div
+      style="display: flex; position: absolute; left: 0; right: 0; top: 0; bottom: 0;"
+    ></div>
+
     <h1
       style="font-size: ${props.ogConfig?.titleFontSize ??
-      64}px; font-weight: bold; padding-right: 16px; color: ${white}"
+      64}px; font-weight: bold; padding-right: 16px; color: ${black}"
     >
       ${props.title}
     </h1>
 
     <div
-      style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; color: ${white}"
+      style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;"
     >
-      <div style="font-size: 48px;">Grant Sander</div>
-      <div style="font-size: 24px;">${format(props.pubDate, "MMMM yyyy")}</div>
+      <div style="font-size: 48px; color: ${black}">Grant Sander</div>
+      <div style="font-size: 32px; color: ${blackLight}">
+        ${format(props.pubDate, "MMMM yyyy")}
+      </div>
     </div>
 
     <img
