@@ -8,6 +8,7 @@ import Mandelbruh from "@assets/mandelbruh.png";
 import Zephyr from "@assets/zephyr.png";
 import Pokedex from "@assets/pokedex.png";
 import GifMaker from "@assets/gif-maker.png";
+import OSInt from "@assets/osint-web-check.png";
 import { Image } from "astro:assets";
 import { FaGithub } from "@components/FaGithub";
 
@@ -33,6 +34,18 @@ const PROJECTS: Project[] = [
     // imageFit: "contain" as const,
     link: {
       href: "https://formidable.com/open-source/victory-native/",
+      title: "Check it out",
+    },
+  },
+  {
+    title: "OSInt Raycast Extension",
+    repoUrl: "https://github.com/gksander/raycast-osint-webcheck",
+    description:
+      "A Raycast extension for running Open Source Intelligence checks on a domain.",
+    image: OSInt,
+    imageFit: "contain" as const,
+    link: {
+      href: "https://www.raycast.com/gksander/osint-web-check",
       title: "Check it out",
     },
   },
