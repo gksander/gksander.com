@@ -38,7 +38,7 @@ export async function createOgImage(
   callback: (args: OgImageCallbackArgs) => unknown,
 ) {
   const texture = await fsp
-    .readFile(path.resolve(process.cwd(), "public/img/concrete-wall.png"))
+    .readFile(path.resolve(process.cwd(), "public/img/concrete-wall-2.png"))
     .then((b) => b.toString("base64"));
 
   const out = callback({
