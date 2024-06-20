@@ -107,12 +107,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
   </head>
 
   <body class="min-h-screen bg-background text-black">
-    <div class="fixed inset-0 bg-[url('/img/concrete-wall-2.png')] z-[-2]">
-    </div>
+    <div class="fixed inset-0 bg-[url('/img/concrete-wall.png')] z-[-2]"></div>
     <div
       class:list={[
         "fixed inset-0 z-[-1]",
-        subtleBgTexture ? "bg-background/60" : "bg-background/20",
+        subtleBgTexture ? "bg-background/80" : "bg-background/50",
       ]}
     >
     </div>
