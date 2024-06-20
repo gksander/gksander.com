@@ -79,20 +79,27 @@ const TURN = 0.75;
 const LOGO_TRACK_X = TOTAL_WIDTH - TRACK_RADIUS * Math.cos(END_ANGLE);
 const LOGO_TRACK_Y = TOTAL_WIDTH + TRACK_RADIUS * Math.sin(START_ANGLE);
 
-const { HTMLLogo, CSSLogo, TSLogo, ReactLogo, TWLogo, NodeLogo, PythonLogo } =
-  _LOGOS;
+const {
+  HTMLLogo,
+  CSSLogo,
+  TSLogo,
+  ReactLogo,
+  SvelteLogo,
+  TWLogo,
+  NodeLogo,
+  PythonLogo,
+} = _LOGOS;
 
 const LOGOS = [
   HTMLLogo,
   CSSLogo,
   TSLogo,
   ReactLogo,
+  SvelteLogo,
   TWLogo,
   NodeLogo,
   PythonLogo,
-  // TODO: couple more logos here
-  PythonLogo,
-  PythonLogo,
+  HTMLLogo,
 ].toReversed();
 
 function getCoords(i: number, N: number = LOGOS.length) {

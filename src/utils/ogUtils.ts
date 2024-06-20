@@ -44,7 +44,7 @@ export async function createOgImage(
   const out = callback({
     colors: { black, background, blackLight, accent },
     html,
-    rootStyle: `display: flex; flex-direction: column; padding: 32px; bottom: 0; width: 1200px; height: 630px; background-color: ${background}; background-image: url(data:image/png;base64,${texture});`,
+    rootStyle: `display: flex; flex-direction: column; padding: 40px; bottom: 0; width: 1200px; height: 630px; background-color: ${background}; background-image: url(data:image/png;base64,${texture});`,
   });
 
   const svg = await satori(out as ReactNode, {
