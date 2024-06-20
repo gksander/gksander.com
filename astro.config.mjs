@@ -18,6 +18,14 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: false,
   },
+  vite: {
+    ssr: {
+      external: ['@resvg/resvg-js']
+    },
+    optimizeDeps: {
+      exclude: ["@resvg/resvg-js"]
+    }
+  },
   integrations: [
     react(),
     tailwind(),

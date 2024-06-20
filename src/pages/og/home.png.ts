@@ -10,16 +10,18 @@ export async function GET() {
   return createOgImage(
     ({ colors, html, rootStyle }) => html`
       <div style="${rootStyle}">
-        <div style="font-size: 48px; color: ${colors.blackLight}">
-          I'm Grant
+        <div
+          style="font-size: 80px; color: ${colors.blackLight}; margin-bottom: 8px;"
+        >
+          I'm Grant.
         </div>
-        <div style="font-size: 64px; color: ${colors.black};">
+        <div style="font-size: 110px; color: ${colors.black};">
           I like to build.
         </div>
 
         <img
           src="data:image/png;base64,${headshot}"
-          style="width: 350px; position: absolute; right: 0; bottom: 0;"
+          style="width: 450px; position: absolute; right: 0; bottom: 0;"
         />
       </div>
     `,

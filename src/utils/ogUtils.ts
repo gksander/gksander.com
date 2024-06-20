@@ -17,6 +17,7 @@ const BoldFont = fs.readFileSync(
 
 const black = get(twConfig, "theme.extend.colors.black.DEFAULT") as string;
 const blackLight = get(twConfig, "theme.extend.colors.black.light") as string;
+const accent = get(twConfig, "theme.extend.colors.accent.DEFAULT") as string;
 const background = get(
   twConfig,
   "theme.extend.colors.background.DEFAULT",
@@ -27,6 +28,7 @@ type OgImageCallbackArgs = {
     black: string;
     blackLight: string;
     background: string;
+    accent: string;
   };
   rootStyle: string;
   html: typeof html;
@@ -40,7 +42,7 @@ export async function createOgImage(
     .then((b) => b.toString("base64"));
 
   const out = callback({
-    colors: { black, background, blackLight },
+    colors: { black, background, blackLight, accent },
     html,
     rootStyle: `display: flex; flex-direction: column; padding: 32px; bottom: 0; width: 1200px; height: 630px; background-color: ${background}; background-image: url(data:image/png;base64,${texture});`,
   });
