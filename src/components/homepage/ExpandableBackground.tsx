@@ -79,7 +79,7 @@ function ExperienceItemCard({
         </div>
         <div className="text-subtle-copy text-sm">{item.description}</div>
         {item.accomplishments && (
-          <ul className="text-sm text-subtle-copy flex flex-col gap-y-1">
+          <ul className="text-sm text-subtle-copy flex flex-col gap-y-1.5">
             {item.accomplishments.map((accomplishment) => (
               <li
                 key={accomplishment}
