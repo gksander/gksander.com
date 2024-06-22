@@ -5,6 +5,7 @@
     "jsxImportSource": "react",
     "strictNullChecks": true,
     "baseUrl": ".",
+    "esModuleInterop": true,
     "paths": {
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],

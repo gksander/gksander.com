@@ -1,10 +1,14 @@
 import * as path from "node:path";
 import * as fs from "node:fs/promises";
-import * as url from "node:url";
 
-export async function gatherEditorFiles(metaUrl: string) {
-  const dirname = path.dirname(url.fileURLToPath(metaUrl));
-  const files = (await fs.readdir(dirname)).filter(
+export async function gatherEditorFiles(postPathname: string) {
+  const folder = path.resolve(
+    process.cwd(),
+    "src/content",
+    postPathname.replace("/posts", "post"),
+    "_fiddle",
+  );
+  const files = (await fs.readdir(folder)).filter(
     (file) => path.extname(file) !== ".astro",
   );
 
@@ -12,7 +16,7 @@ export async function gatherEditorFiles(metaUrl: string) {
     await Promise.all(
       files.map(async (file) => [
         file,
-        await fs.readFile(path.resolve(dirname, file), "utf-8"),
+        await fs.readFile(path.resolve(folder, file), "utf-8"),
       ]),
     )
   ).reduce<Record<string, string>>((acc, [filename, contents]) => {

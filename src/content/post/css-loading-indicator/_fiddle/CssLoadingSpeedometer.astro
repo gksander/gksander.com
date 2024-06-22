@@ -2,7 +2,7 @@
 import { Editor } from "@components/Editor";
 import { gatherEditorFiles } from "@utils/gatherEditorFiles";
 
-const files = await gatherEditorFiles(import.meta.url);
+const files = await gatherEditorFiles(Astro.url.pathname);
 ---
 
 <Editor files={files} activeFile="app.css" client:visible />

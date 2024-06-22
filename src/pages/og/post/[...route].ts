@@ -2,21 +2,21 @@ import path from "node:path";
 import fs from "node:fs";
 import type { CollectionEntry } from "astro:content";
 import { format } from "date-fns";
-import { createOgImage } from "@utils/ogUtils.ts";
+import { createOgImage } from "@utils/ogUtils";
 
 type BlogData = CollectionEntry<"post">["data"];
 
 // Import all pages from the content directory
-const rawPages = import.meta.glob("/src/content/**/*.mdx", {
+const rawPages = import.meta.glob("/src/content/post/**/index.mdx", {
   eager: true,
 });
 
 // Remove the /src/content/ prefix from the paths
 const pages = Object.entries(rawPages).reduce<Record<string, BlogData>>(
   (acc, [path, page]) => {
-    acc[path.replace("/src/content/post/", "")] = (
-      page as { frontmatter: BlogData }
-    ).frontmatter;
+    const slug = path.split("/").at(-2);
+
+    slug && (acc[slug] = (page as { frontmatter: BlogData }).frontmatter);
     return acc;
   },
   {},
@@ -35,7 +35,7 @@ export async function getStaticPaths() {
 export async function GET({ props }: { props: BlogData }) {
   const featuredImagePath = props.ogConfig?.featureImagePath;
   const imagePath = featuredImagePath
-    ? path.resolve(process.cwd(), `src/assets/${featuredImagePath}`)
+    ? path.resolve(process.cwd(), featuredImagePath)
     : path.resolve(process.cwd(), "src/assets/headshot.png");
   const image = fs.readFileSync(imagePath).toString("base64");
 

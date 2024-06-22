@@ -12,7 +12,7 @@ keywords:
 pubDate: "Aug 03 2023"
 ---
 
-import { Counter } from "@components/posts/tight-with-astro/Counter";
+import { Counter } from "./_assets/Counter";
 
 For a number of years, my personal site has been built on [Next.js](https://nextjs.org/). I recently decided I wanted to start writing independently (so that I can randomly lob my thoughts out into the internets), and so I embarked on the journey of adding MDX blogging to my existing Next.js 13 site.
 
@@ -24,7 +24,7 @@ So, say hello to my little friend: [Astro](https://astro.build/). Astro is a rel
 
 For me, it's basically the perfect framework for building my personal site. I can use Preact or Svelte for templating or when I want to make interactive components, but ship nearly zero client-side JS on pages where nothing crazy is going on. For example, here's my home page:
 
-![Home page with devtools network tab open, no JS files shown](@assets/posts/tight-with-astro/no-js.png)
+![Home page with devtools network tab open, no JS files shown](./_assets/no-js.png)
 
 See that? **No JS!** If you scroll down a bit, some light Preact + component code will load in asynchronously to handle a bit of user interaction, but it's only loaded when it's actually needed. This keeps shit _mean and lean_. The thing is, there are _so many_ sites that don't really require that much client-side JS, but developers (including myself) do prefer to use the modern frontend tooling to build out the sites. Astro strikes a nice balance.
 
@@ -91,7 +91,7 @@ Vercel has a [whole product](https://vercel.com/docs/concepts/functions/edge-fun
 
 Using [`node-canvas`](https://github.com/Automattic/node-canvas), some drawing commands, and a dynamic Astro route, I was able to generate Open Graph images for my posts on the fly. Here's an example output:
 
-![Open Graph image for this post](@assets/posts/tight-with-astro/dynamic-og.png)
+![Open Graph image for this post](./_assets//dynamic-og.png)
 
 These images are now generated based on the title and publication date for _all_ blog posts without future effort. Yay for automation!
 
