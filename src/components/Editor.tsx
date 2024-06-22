@@ -12,7 +12,7 @@ type Props = {
 
 export function Editor({ template = "react-ts", files, activeFile }: Props) {
   return (
-    <div className="-mx-breakout sp-editor">
+    <div className="-mx-breakout-4 md:-mx-breakout-8 sp-editor">
       <Sandpack
         template={template}
         theme={atomDark}

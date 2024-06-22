@@ -36,13 +36,16 @@ export default {
         "wide-content": "62rem",
       },
 
-      spacing: ({ theme }) => {
+      // Create breakout-{space} classes for full-bleed content
+      spacing: () => {
         const wideContent = "62rem";
-        const extraPadding = defaultTheme.spacing[8];
+        const spaces = defaultTheme.spacing;
 
-        return {
-          breakout: `calc(max(0vw, (100vw - ${wideContent}) / 2) + ${extraPadding})`,
-        };
+        return ["4", "8"].reduce((acc, space) => {
+          acc[`breakout-${space}`] =
+            `calc(max(0vw, (100vw - ${wideContent}) / 2) + ${spaces[space]})`;
+          return acc;
+        }, {});
       },
     },
     container: {
