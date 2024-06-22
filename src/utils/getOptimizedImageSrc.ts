@@ -1,4 +1,4 @@
-import type { ImageMetadata, ImageTransform } from "astro";
+import type { ImageTransform } from "astro";
 import { getImage } from "astro:assets";
 
 export async function getOptimizedImageSrc(payload: ImageTransform) {
