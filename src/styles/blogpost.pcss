@@ -5,6 +5,12 @@ p:has(> img:only-child) {
   }
 }
 
+/* Tiny hack to remove border radius from sandpack editor */
+.sp-editor .sp-layout {
+  --sp-border-radius: 0px;
+  @apply border-l-0 border-r-0 border-background-dark;
+}
+
 pre.shiki {
   --shiki-color-text: theme("colors.primary.800");
   --shiki-color-background: theme("colors.background.DEFAULT");
@@ -18,7 +24,7 @@ pre.shiki {
   --shiki-token-punctuation: theme("colors.gray.700");
   --shiki-token-link: #ee0000;
 
-  @apply relative pt-2 px-0 pb-6 rounded border border-background-dark;
+  @apply relative pt-2 px-0 pb-6 rounded border border-background-dark grid;
   @apply text-xs md:text-sm;
   & * {
     font-family: "JetBrains Mono Variable", monospace;
@@ -58,7 +64,7 @@ pre.shiki {
   /* For twoslash errors */
 
   & data-err {
-    @apply underline decoration-wavy decoration-red-400 ;
+    @apply underline decoration-wavy decoration-red-400;
   }
 
   .error {

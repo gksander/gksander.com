@@ -106,7 +106,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
     <ViewTransitions />
   </head>
 
-  <body class="min-h-screen bg-background text-black">
+  <body class="min-h-screen bg-background text-black flex flex-col">
     <div class="fixed inset-0 bg-[url('/img/concrete-wall.png')] z-[-2]"></div>
     <div
       class:list={[

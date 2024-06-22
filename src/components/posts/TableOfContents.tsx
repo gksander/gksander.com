@@ -28,7 +28,7 @@ export function TableOfContents({ headings }: { headings: MarkdownHeading[] }) {
   }, []);
 
   return (
-    <aside className="hidden lg:block h-fit sticky top-12 text-black">
+    <aside className="hidden lg:block w-[300px] shrink-0 h-fit sticky top-12 text-black">
       <h2 className="text-lg font-bold mb-4">Table of Contents</h2>
       <div className="flex flex-col gap-y-2 text-sm">
         {headings.map((heading) => (

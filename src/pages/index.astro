@@ -1,29 +1,24 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import _headshot from "@assets/headshot.png";
+import { ContentContainer } from "@components/ContentContainer";
+import { HEADSHOT_WIDTH } from "@components/Hero";
 import Background from "@components/homepage/Background.astro";
+import { HeroFancy } from "@components/homepage/HeroFancy";
 import Projects from "@components/homepage/Projects.astro";
 import RecentPosts from "@components/homepage/RecentPosts.astro";
-import { ContentContainer } from "@components/ContentContainer";
-import { Header } from "@components/Header";
-import { HEADSHOT_WIDTH, Hero } from "@components/Hero";
-import _headshot from "@assets/headshot.png";
 import { getOptimizedImageSrc } from "src/utils/getOptimizedImageSrc";
-import { HeroFancy } from "@components/homepage/HeroFancy";
-import { Editor } from "@components/posts/Editor";
+import Layout from "../layouts/Layout.astro";
 
 const headshot = await getOptimizedImageSrc({
   src: _headshot,
   width: 2 * HEADSHOT_WIDTH,
 });
-
-const description = `TypeScript connoisseur. Animation aficionado. Frontend web, mostly React and Next.js. Cross-platform mobile with React Native. Backend with Node.js and Python. Have written an SQL query or two. Can wrangle the cloud when needed.`;
 ---
 
 <Layout title="Grant Sander">
   <HeroFancy headshot={headshot} client:visible />
 
   <ContentContainer as="main" className="py-12 flex flex-col gap-y-32">
-    <Editor client:visible />
     <Background />
     <RecentPosts />
     <Projects />

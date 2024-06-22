@@ -1,5 +1,6 @@
 import colors from "tailwindcss/colors";
 import typography from "@tailwindcss/typography";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -7,7 +8,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        fancy: ['Merriweather Sans Variable', 'sans-serif']
+        fancy: ["Merriweather Sans Variable", "sans-serif"],
       },
       colors: {
         // TODO: get rid of these...
@@ -33,6 +34,15 @@ export default {
       maxWidth: {
         content: "50rem",
         "wide-content": "62rem",
+      },
+
+      spacing: ({ theme }) => {
+        const wideContent = "62rem";
+        const extraPadding = defaultTheme.spacing[8];
+
+        return {
+          breakout: `calc(max(0vw, (100vw - ${wideContent}) / 2) + ${extraPadding})`,
+        };
       },
     },
     container: {
