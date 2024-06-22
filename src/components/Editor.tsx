@@ -2,7 +2,7 @@ import {
   Sandpack,
   type SandpackPredefinedTemplate,
 } from "@codesandbox/sandpack-react";
-import { gruvboxLight, atomDark } from "@codesandbox/sandpack-themes";
+import { atomDark } from "@codesandbox/sandpack-themes";
 
 type Props = {
   template?: SandpackPredefinedTemplate;

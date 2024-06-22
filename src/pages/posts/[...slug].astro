@@ -42,6 +42,7 @@ const PROSE_CLASSES = [
   keywords={post.data.keywords}
   image={`/og/post/${post.slug}.png`}
   subtleBgTexture={true}
+  hasSandpack={post.data.style === "fiddle"}
 >
   <Header isFat={true} />
 

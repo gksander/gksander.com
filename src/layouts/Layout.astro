@@ -1,9 +1,11 @@
 ---
 import "@fontsource-variable/merriweather-sans";
 import "@fontsource-variable/montserrat";
+import { getSandpackCssText } from "@codesandbox/sandpack-react";
 import "@styles/global.pcss";
 import { ViewTransitions } from "astro:transitions";
 import { Footer } from "@components/Footer";
+
 
 interface Props {
   title?: string;
@@ -13,6 +15,7 @@ interface Props {
   isFat?: boolean;
   hasKatex?: boolean;
   subtleBgTexture?: boolean;
+  hasSandpack?: boolean
 }
 
 const {
@@ -23,9 +26,9 @@ const {
   isFat = false,
   hasKatex = false,
   subtleBgTexture = false,
+  hasSandpack = false
 } = Astro.props;
 
-// TODO: enable
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
@@ -103,7 +106,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
       )
     }
 
-    <ViewTransitions />
+    {hasSandpack && <style>{getSandpackCssText()}</style>}
+
+    <!-- For some reason, view transitions fuck up loading Sandpack on second+ visit -->
+    {!hasSandpack && <ViewTransitions />}
   </head>
 
   <body class="min-h-screen bg-background text-black flex flex-col">
