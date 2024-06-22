@@ -20,26 +20,23 @@ export default defineConfig({
   },
   vite: {
     ssr: {
-      external: ['@resvg/resvg-js']
+      external: ["@resvg/resvg-js"],
     },
     optimizeDeps: {
-      exclude: ["@resvg/resvg-js"]
-    }
+      exclude: ["@resvg/resvg-js"],
+    },
   },
   integrations: [
     react(),
     tailwind(),
     mdx({
       syntaxHighlight: false,
-      shikiConfig: {
-        theme: "one-dark-pro",
-      },
       remarkPlugins: [
         [remarkToc],
         [
           shikiTwoslash.default,
           {
-            themes: ["css-variables"],
+            themes: ["rose-pine-dawn"],
           },
         ],
         remarkMath,

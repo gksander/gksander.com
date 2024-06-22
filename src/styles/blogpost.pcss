@@ -12,17 +12,17 @@ p:has(> img:only-child) {
 }
 
 pre.shiki {
-  --shiki-color-text: theme("colors.primary.800");
+  /* --shiki-color-text: theme("colors.amber.800");
   --shiki-color-background: theme("colors.background.DEFAULT");
-  --shiki-token-constant: theme("colors.primary.700");
+  --shiki-token-constant: theme("colors.amber.600");
   --shiki-token-string: #770000;
   --shiki-token-comment: theme("colors.gray.500");
-  --shiki-token-keyword: theme("colors.secondary.900");
+  --shiki-token-keyword: theme("colors.blue.700");
   --shiki-token-parameter: theme("colors.red.500");
-  --shiki-token-function: theme("colors.primary.600");
-  --shiki-token-string-expression: theme("colors.secondary.800");
+  --shiki-token-function: theme("colors.cyan.600");
+  --shiki-token-string-expression: theme("colors.blue.800");
   --shiki-token-punctuation: theme("colors.gray.700");
-  --shiki-token-link: #ee0000;
+  --shiki-token-link: #ee0000; */
 
   @apply relative pt-2 px-0 pb-6 rounded border border-background-dark grid;
   @apply text-xs md:text-sm;
@@ -39,7 +39,7 @@ pre.shiki {
   }
 
   & code {
-    @apply block min-w-fit pb-2 -mb-5 bg-background;
+    @apply block min-w-fit pb-2 -mb-5;
   }
 
   & div.line {
@@ -52,12 +52,12 @@ pre.shiki {
     @apply overflow-hidden;
 
     .popover {
-      @apply ml-8 py-1 px-3 relative inline-block rounded bg-background-dark text-black-light bg-opacity-70 mt-3 mb-1;
+      @apply ml-8 py-1 px-3 relative inline-block rounded bg-background-light text-black-light bg-opacity-70 mt-3 mb-1;
       @apply flex-shrink overflow-ellipsis text-xs;
     }
     .popover::before {
       content: "";
-      @apply block absolute w-0 h-0 border-l-8 border-b-[10px] border-r-8 border-transparent border-b-gray-300 -top-2;
+      @apply block absolute w-0 h-0 border-l-8 border-b-[10px] border-r-8 border-transparent border-b-background-light -top-2;
     }
   }
 
@@ -68,7 +68,7 @@ pre.shiki {
   }
 
   .error {
-    @apply flex w-fit min-w-full items-center gap-2 border-t-4 border-red-400 rounded-sm mt-2 mb-1 p-3 bg-background-dark text-black-light text-xs;
+    @apply flex w-fit min-w-full items-center gap-2 border-t-4 border-red-400 rounded-sm mt-2 mb-1 p-3 bg-background-light text-black-light text-xs;
 
     > span:first-child {
       @apply flex-1;
