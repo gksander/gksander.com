@@ -16,6 +16,8 @@
     "@astrojs/rss": "^4.0.6",
     "@astrojs/sitemap": "^3.1.5",
     "@astrojs/tailwind": "^5.1.0",
+    "@codesandbox/sandpack-react": "^2.14.4",
+    "@codesandbox/sandpack-themes": "^2.0.21",
     "@fontsource-variable/jetbrains-mono": "^5.0.21",
     "@fontsource-variable/merriweather-sans": "^5.0.14",
     "@fontsource-variable/montserrat": "^5.0.19",

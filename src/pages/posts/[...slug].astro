@@ -30,38 +30,36 @@ const PROSE_CLASSES = [
   "hover:prose-a:text-accent",
   // Blockquote
   "prose-blockquote:border-l-background-dark marker:text-subtle-copy",
+  "max-w-none",
 ];
 ---
 
 <Layout
   title={`${post.data.title} | Grant Sander`}
   description={post.data.metaDescription || post.data.description}
-  isFat={isLongform}
+  isFat={true}
   hasKatex={post.data.hasMath}
   keywords={post.data.keywords}
   image={`/og/post/${post.slug}.png`}
   subtleBgTexture={true}
 >
-  <Header isFat={isLongform} />
+  <Header isFat={true} />
 
-  {
-    isLongform ? (
-      <ContentContainer
-        className="py-12 grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-x-12 gap-y-12"
-        isFat={true}
-      >
-        <main class="flex-grow overflow-hidden">
-          <div class="font-medium text-subtle-copy">{formattedPubDate}</div>
-          <h1 class="mb-12 text-3xl font-bold">{post.data.title}</h1>
+  <ContentContainer
+    className={clsx(
+      "py-12 grid grid-cols-1 gap-x-12 gap-y-12",
+      isLongform && "lg:grid-cols-[1fr,300px]"
+    )}
+    isFat={true}
+  >
+    <main class="flex-grow overflow-hidden">
+      <div class="font-medium text-subtle-copy">{formattedPubDate}</div>
+      <h1 class="mb-12 text-3xl font-bold">{post.data.title}</h1>
 
-          <div class:list={PROSE_CLASSES}>
-            <Content />
-          </div>
-        </main>
-        <TableOfContents headings={headings} client:visible />
-      </ContentContainer>
-    ) : (
-      <ContentContainer>Hey</ContentContainer>
-    )
-  }
+      <div class:list={PROSE_CLASSES}>
+        <Content />
+      </div>
+    </main>
+    {isLongform && <TableOfContents headings={headings} client:visible />}
+  </ContentContainer>
 </Layout>
