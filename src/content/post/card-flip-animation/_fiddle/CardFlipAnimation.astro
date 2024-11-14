@@ -1,0 +1,13 @@
+---
+import { Editor } from "@components/Editor";
+import { gatherEditorFiles } from "@utils/gatherEditorFiles";
+
+const files = await gatherEditorFiles(Astro.url.pathname);
+---
+
+<Editor
+  files={files}
+  activeFile="App.tsx"
+  client:load
+  dependencies={["framer11"]}
+/>

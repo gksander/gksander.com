@@ -9,10 +9,26 @@ type Props = {
   template?: SandpackPredefinedTemplate;
   files?: Record<string, string>;
   activeFile?: string;
+  dependencies?: (keyof typeof DEPENDENCIES)[];
 };
 
-export function Editor({ template = "react-ts", files, activeFile }: Props) {
+export function Editor({
+  template = "react-ts",
+  files,
+  activeFile,
+  dependencies,
+}: Props) {
   const [isMounted, setIsMounted] = React.useState(false);
+
+  const deps = React.useMemo(() => {
+    return (dependencies ?? []).reduce(
+      (acc, key) => {
+        Object.assign(acc, DEPENDENCIES[key]);
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
+  }, [dependencies]);
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -24,6 +40,9 @@ export function Editor({ template = "react-ts", files, activeFile }: Props) {
         template={template}
         theme={atomDark}
         files={files}
+        customSetup={{
+          dependencies: deps,
+        }}
         options={{
           showConsoleButton: true,
           showInlineErrors: true,
@@ -40,3 +59,7 @@ export function Editor({ template = "react-ts", files, activeFile }: Props) {
     </div>
   );
 }
+
+const DEPENDENCIES = {
+  framer11: { "framer-motion": "11.2.10" },
+} satisfies Record<string, Record<string, string>>;

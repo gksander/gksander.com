@@ -31,18 +31,6 @@ export function Hero({ title, description, headshot }: Props) {
 
               let maskImage: string | undefined = undefined;
 
-              // if (index === 0) {
-              //   const { left: nextLeft, top: nextTop } = getCoords(1);
-              //   const angle =
-              //     Math.PI / 2 + Math.atan2(top - nextTop, nextLeft - left);
-              //   maskImage = `linear-gradient(${angle}rad, rgba(0,0,0,1), rgba(0,0,0,0) 50%)`;
-              // } else if (index === LOGOS.length - 1) {
-              //   const { left: prevLeft, top: prevTop } = getCoords(index - 1);
-              //   const angle =
-              //     Math.PI / 2 + Math.atan2(prevTop - top, left - prevLeft);
-              //   maskImage = `linear-gradient(${angle}rad, rgba(0,0,0,1), rgba(0,0,0,0) 50%)`;
-              // }
-
               return (
                 <Logo
                   key={index}
