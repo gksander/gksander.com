@@ -5,9 +5,7 @@ import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useRef } from "react";
 import type { OptimizedImageDetails } from "src/utils/getOptimizedImageSrc";
 
-type Props = {
-  headshot: OptimizedImageDetails;
-};
+type Props = { headshot: OptimizedImageDetails };
 
 export function HeroFancy({ headshot }: Props) {
   const ref = useRef<HTMLDivElement>(null);
@@ -35,4 +33,4 @@ export function HeroFancy({ headshot }: Props) {
   );
 }
 
-const description = `TypeScript connoisseur. Animation aficionado. Frontend web, mostly React and Next.js. Cross-platform mobile with React Native. Backend with Node.js and Python. Have written an SQL query or two. Can wrangle the cloud when needed.`;
+const description = `Frontend web, mostly React and Next.js. Cross-platform mobile with React Native. Backend with Node.js and Python. Have written an SQL query or two. Can wrangle the cloud when needed.`;

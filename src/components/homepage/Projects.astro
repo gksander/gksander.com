@@ -7,6 +7,7 @@ import Clips from "@assets/clips.png";
 import Mandelbruh from "@assets/mandelbruh.png";
 import Zephyr from "@assets/zephyr.png";
 import Pokedex from "@assets/pokedex.png";
+import Pokemon from "@assets/pokemon.png";
 import GifMaker from "@assets/gif-maker.png";
 import OSInt from "@assets/osint-web-check.png";
 import { Image } from "astro:assets";
@@ -25,6 +26,17 @@ type Project = {
 };
 
 const PROJECTS: Project[] = [
+  {
+    title: "Pokemon app",
+    repoUrl: "https://github.com/gksander/pokemon",
+    description:
+      "Pokemon PWA built with Next.js and Prisma. Renders Pokemon, evolutions, types, moves, trading cards, and more.",
+    image: Pokemon,
+    link: {
+      href: "https://pokemon.gksander.com/",
+      title: "Check it out",
+    },
+  },
   {
     title: "Victory Native",
     repoUrl: "https://github.com/FormidableLabs/victory-native-xl/",
@@ -89,16 +101,6 @@ const PROJECTS: Project[] = [
       title: "View the docs",
     },
     image: Zephyr,
-  },
-  {
-    title: "Personal PokeDex",
-    repoUrl: "https://github.com/gksander/gks-pokedex-next",
-    description: `Pokedex site built with Next.js static site generation powered by PokeAPI CSV data.`,
-    link: {
-      href: "https://pokedex.gksander.com/",
-      title: "Check it out",
-    },
-    image: Pokedex,
   },
   {
     title: "GifMaker",

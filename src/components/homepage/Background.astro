@@ -20,13 +20,14 @@ const EXPERIENCES: IExperience[] = await Promise.all(
       {
         title: "Staff Software Engineer",
         company: "Ramp",
-        description: `Full-stack web development using React and Python. Leading initiatives to streamline cardholder and admin workflows.`,
+        description: `Frontend lead on the spend management team. Streamlining work for cardholders and admins.`,
         time: "Oct. 2023 &ndash; Present",
         logo: RampIcon,
         accomplishments: [
-          "Led a team of fantastic engineers on the spend management frontend team.",
+          "Led a team of fantastic engineers on the spend management frontend team, directly managing six engineers.",
           "Led the development of a new cardholder experience on web.",
           "Overhauled the core of Ramp's card transaction web interfaces.",
+          "Maintained the spend management engineering surface area, ensuring quality through monitoring, alerting, testing, cleanup, and more.",
         ],
       },
       {
@@ -117,7 +118,7 @@ const EXPERIENCES: IExperience[] = await Promise.all(
     logo: exp.logo
       ? await getOptimizedImageSrc({ src: exp.logo, width: 100 })
       : undefined,
-  })),
+  }))
 );
 
 type IExperience = {
