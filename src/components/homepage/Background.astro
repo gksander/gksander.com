@@ -28,6 +28,7 @@ const EXPERIENCES: IExperience[] = await Promise.all(
           "Led the development of a new cardholder experience on web.",
           "Overhauled the core of Ramp's card transaction web interfaces.",
           "Maintained the spend management engineering surface area, ensuring quality through monitoring, alerting, testing, cleanup, and more.",
+          "Helped deliver Ramp's Policy Agent, one of Ramp's original flagship AI products – helping align the team on GA deliverables and executing with the team to bring the product to users.",
         ],
       },
       {
@@ -118,7 +119,7 @@ const EXPERIENCES: IExperience[] = await Promise.all(
     logo: exp.logo
       ? await getOptimizedImageSrc({ src: exp.logo, width: 100 })
       : undefined,
-  }))
+  })),
 );
 
 type IExperience = {
