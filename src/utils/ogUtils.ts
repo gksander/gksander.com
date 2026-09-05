@@ -15,13 +15,14 @@ const BoldFont = fs.readFileSync(
   path.resolve("./src/assets/fonts/Montserrat-Bold.ttf"),
 );
 
-const black = get(twConfig, "theme.extend.colors.black.DEFAULT") as string;
-const blackLight = get(twConfig, "theme.extend.colors.black.light") as string;
-const accent = get(twConfig, "theme.extend.colors.accent.DEFAULT") as string;
+const black = get(twConfig, "theme.extend.colors.black.DEFAULT", "#1A1A1A");
+const blackLight = get(twConfig, "theme.extend.colors.black.light", "#494848");
+const accent = get(twConfig, "theme.extend.colors.accent.DEFAULT", "#486242");
 const background = get(
   twConfig,
   "theme.extend.colors.background.DEFAULT",
-) as string;
+  "#E4E3D8",
+);
 
 type OgImageCallbackArgs = {
   colors: {
@@ -72,7 +73,7 @@ export async function createOgImage(
     },
   });
 
-  return new Response(resvg.render().asPng(), {
+  return new Response(Uint8Array.from(resvg.render().asPng()), {
     headers: {
       "Content-Type": "image/png",
       "Cache-Control": "public, max-age=31536000, immutable",

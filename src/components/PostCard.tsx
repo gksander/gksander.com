@@ -11,7 +11,7 @@ export function PostCard({ post }: Props) {
   const { title, description, pubDate } = post.data;
   const formattedDate = format(post.data.pubDate, "MMMM yyyy");
 
-  const href = isExternalPost(post) ? post.data.href : `/posts/${post.slug}`;
+  const href = isExternalPost(post) ? post.data.href : `/posts/${post.id}`;
 
   return (
     <div>

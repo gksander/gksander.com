@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import react from "@astrojs/react";
-import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import remarkToc from "remark-toc";
 import shikiTwoslash from "remark-shiki-twoslash";
@@ -17,26 +17,16 @@ export default defineConfig({
   output: "static",
   markdown: {
     syntaxHighlight: false,
-  },
-  vite: {
-    ssr: {
-      external: ["@resvg/resvg-js"],
-    },
-    optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
-  },
-  integrations: [
-    react(),
-    tailwind(),
-    mdx({
-      syntaxHighlight: false,
+    processor: unified({
       remarkPlugins: [
         [remarkToc],
         [
           shikiTwoslash.default,
           {
             themes: ["rose-pine-dawn"],
+            defaultCompilerOptions: {
+              ignoreDeprecations: "6.0",
+            },
           },
         ],
         remarkMath,
@@ -52,6 +42,18 @@ export default defineConfig({
         rehypeKatex,
       ],
     }),
+  },
+  vite: {
+    ssr: {
+      external: ["@resvg/resvg-js"],
+    },
+    optimizeDeps: {
+      exclude: ["@resvg/resvg-js"],
+    },
+  },
+  integrations: [
+    react(),
+    mdx(),
     sitemap(),
   ],
 });

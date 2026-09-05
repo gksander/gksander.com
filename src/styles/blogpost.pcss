@@ -1,3 +1,5 @@
+@reference "./global.pcss";
+
 /* Astro images get tangled up and hard to customize. This takes a CSS appproach */
 p:has(> img:only-child) {
   > img {
@@ -56,7 +58,7 @@ pre.shiki {
     @apply overflow-hidden;
 
     .popover {
-      @apply ml-8 py-1 px-3 relative inline-block rounded bg-background-light text-black-light bg-opacity-70 mt-3 mb-1;
+      @apply ml-8 py-1 px-3 relative inline-block rounded bg-background-light/70 text-black-light mt-3 mb-1;
       @apply flex-shrink overflow-ellipsis text-xs;
     }
     .popover::before {
